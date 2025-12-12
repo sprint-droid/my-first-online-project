@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Automation Solutions | Next-Gen Tech</title>
+    <title>AI Automation Portfolio | Harsha Reddy</title>
     <style>
         /* --- MODERN CSS STYLING --- */
         :root {
@@ -12,6 +12,7 @@
             --bg: #0a0a0a;
             --card-bg: #161616;
             --text: #ffffff;
+            --accent-green: #00ff88;
         }
 
         body {
@@ -22,7 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* Smooth Scrolling */
         html { scroll-behavior: smooth; }
 
         /* Navigation */
@@ -31,12 +31,11 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 50px;
-            background: rgba(10, 10, 10, 0.9);
+            background: rgba(10, 10, 10, 0.95);
             position: fixed;
             width: 90%;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
             border-bottom: 1px solid #333;
         }
 
@@ -47,6 +46,9 @@
             text-decoration: none;
             margin-left: 20px;
             transition: color 0.3s;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .nav-links a:hover { color: var(--primary); }
 
@@ -64,7 +66,7 @@
 
         h1 {
             font-size: 3.5rem;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             background: -webkit-linear-gradient(45deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -74,179 +76,231 @@
             font-size: 1.2rem;
             max-width: 600px;
             color: #ccc;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .btn {
-            padding: 15px 30px;
+            padding: 12px 30px;
             font-size: 1rem;
             border: none;
-            border-radius: 50px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: 0.3s;
             text-decoration: none;
             color: white;
             font-weight: bold;
+            display: inline-block;
         }
 
         .btn-primary {
             background: linear-gradient(90deg, var(--secondary), var(--primary));
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
         }
+        .btn-primary:hover { box-shadow: 0 0 20px rgba(0, 242, 255, 0.6); }
 
-        .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.6);
+        /* PORTFOLIO SECTION (New) */
+        .portfolio {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+        .section-title span { color: var(--primary); }
 
-        /* Services Section (Cards) */
-        .services {
-            padding: 80px 50px;
-            display: flex;
-            justify-content: center;
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .project-header {
+            background: #222;
+            padding: 15px 20px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-status {
+            font-size: 0.8rem;
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-green);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .project-body { padding: 20px; }
+
+        .project-body h3 { margin-top: 0; color: white; }
+        
+        .tech-stack {
+            margin: 15px 0;
+            display: flex;
+            gap: 10px;
             flex-wrap: wrap;
         }
 
-        .card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            width: 300px;
-            border: 1px solid #333;
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
+        .tech-tag {
+            background: #333;
+            color: #ccc;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
         }
 
-        .card:hover {
-            border-color: var(--primary);
-            transform: translateY(-10px);
+        .impact-box {
+            background: rgba(0, 242, 255, 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 10px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: #ddd;
         }
 
-        .card h3 { color: var(--primary); }
-
-        /* Interactive Contact Section */
+        /* Contact Section */
         .contact {
             padding: 80px 20px;
             text-align: center;
             background: #111;
-        }
-
-        .contact-box {
-            display: inline-block;
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid var(--secondary);
+            margin-top: 50px;
         }
 
         .contact-link {
-            display: block;
-            margin: 15px 0;
+            display: inline-block;
+            margin: 10px 20px;
             color: white;
             text-decoration: none;
-            font-size: 1.2rem;
-            padding: 10px;
-            border-radius: 8px;
-            transition: background 0.3s;
+            font-size: 1.1rem;
+            border: 1px solid #333;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: 0.3s;
         }
+        .contact-link:hover { background: var(--primary); color: black; border-color: var(--primary); }
 
-        .contact-link:hover { background: rgba(255, 255, 255, 0.1); }
-
-        /* Floating AI Bot Widget */
-        .ai-widget {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--primary);
-            color: black;
-            padding: 15px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
-            animation: float 3s ease-in-out infinite;
-            font-weight: bold;
-            z-index: 2000;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Mobile Adjustments */
+        /* Mobile */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
-            nav { padding: 20px; justify-content: center; }
-            .nav-links { display: none; } /* Hide menu on small screens for simplicity */
+            nav { padding: 15px; justify-content: center; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">AI.Automate</div>
+        <div class="logo">HARSHA.AI</div>
         <div class="nav-links">
             <a href="#home">Home</a>
-            <a href="#services">Services</a>
-            <a href="#contact">Contact</a>
+            <a href="#portfolio">Projects</a>
+            <a href="#contact">Hire Me</a>
         </div>
     </nav>
 
     <section id="home" class="hero">
-        <h1>Future-Ready Automation</h1>
-        <p class="subtitle">We build intelligent AI agents, automated workflows, and high-performance websites to scale your business.</p>
-        <a href="#contact" class="btn btn-primary">Start Your Project</a>
+        <h1>AI Automation Engineer</h1>
+        <p class="subtitle">I build automated systems that save time, reduce costs, and scale operations using Python & AI Agents.</p>
+        <a href="#portfolio" class="btn btn-primary">View My Work</a>
     </section>
 
-    <section id="services" class="services">
-        <div class="card">
-            <h3>🤖 AI Agents</h3>
-            <p>Custom chatbots and virtual assistants that work 24/7 to handle customer support and sales.</p>
-        </div>
-        <div class="card">
-            <h3>⚡ Workflow Automation</h3>
-            <p>Save hours by automating repetitive tasks like emails, data entry, and scheduling.</p>
-        </div>
-        <div class="card">
-            <h3>🌐 Smart Web Design</h3>
-            <p>Interactive, high-speed websites designed to convert visitors into clients.</p>
+    <section id="portfolio" class="portfolio">
+        <h2 class="section-title">Featured <span>Projects</span></h2>
+        
+        <div class="project-grid">
+
+            <div class="project-card">
+                <div class="project-header">
+                    <strong>Auto-Content Generator</strong>
+                    <span class="project-status">Completed</span>
+                </div>
+                <div class="project-body">
+                    <h3>Automated Video/Blog Pipeline</h3>
+                    <p>A system that takes a simple topic and automatically generates scripts, voiceovers, and blog posts.</p>
+                    
+                    <div class="impact-box">
+                        <strong>🚀 Result:</strong> Reduced content creation time by 90% (from 5 hours to 30 mins).
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">OpenAI API</span>
+                        <span class="tech-tag">MoviePy</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <strong>Medical Data Scraper</strong>
+                    <span class="project-status">Live</span>
+                </div>
+                <div class="project-body">
+                    <h3>Research Document Analyzer</h3>
+                    <p>An AI agent that reads through complex PDF reports and extracts key data points into Excel automatically.</p>
+                    
+                    <div class="impact-box">
+                        <strong>⚡ Impact:</strong> Automated analysis of 500+ documents with zero manual error.
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">LangChain</span>
+                        <span class="tech-tag">Pinecone</span>
+                        <span class="tech-tag">Streamlit</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <strong>Smart Email Bot</strong>
+                    <span class="project-status">Beta</span>
+                </div>
+                <div class="project-body">
+                    <h3>Customer Inquiry Auto-Responder</h3>
+                    <p>Classifies incoming emails and drafts appropriate responses for review, handling scheduling and FAQs.</p>
+                    
+                    <div class="impact-box">
+                        <strong>💼 ROI:</strong> Handles 50+ inquiries daily without human intervention.
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Zapier</span>
+                        <span class="tech-tag">ChatGPT</span>
+                        <span class="tech-tag">Gmail API</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <section id="contact" class="contact">
-        <h2>Let's Build Something Great</h2>
-        <div class="contact-box">
-            <p>Ready to automate? Contact us directly.</p>
-            
-            <a href="tel:+919008453536" class="contact-link">
-                📞 +91 9008453536
-            </a>
-            
-            <a href="mailto:reddy.harsha183@gmail.com" class="contact-link">
-                ✉️ reddy.harsha183@gmail.com
-            </a>
+        <h2>Ready to automate your workflow?</h2>
+        <p style="color: #999; margin-bottom: 30px;">Available for freelance and full-time roles.</p>
+        
+        <div>
+            <a href="tel:+919008453536" class="contact-link">📞 +91 9008453536</a>
+            <a href="mailto:reddy.harsha183@gmail.com" class="contact-link">✉️ reddy.harsha183@gmail.com</a>
         </div>
     </section>
-
-    <div class="ai-widget" onclick="location.href='#contact'">
-        💬 Ask AI Agent
-    </div>
-
-    <script>
-        // Simple script to greet user based on time
-        window.onload = function() {
-            const hour = new Date().getHours();
-            let greeting;
-            if (hour < 12) greeting = "Good Morning!";
-            else if (hour < 18) greeting = "Good Afternoon!";
-            else greeting = "Good Evening!";
-            
-            console.log(greeting + " Welcome to AI Automate.");
-        };
-    </script>
 
 </body>
 </html>
