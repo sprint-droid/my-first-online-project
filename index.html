@@ -3,304 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Automation Portfolio | Harsha Reddy</title>
+    <title>Dr. Harshavardhan Reddy Alla - AI-Driven Product & Medical Affairs Leader</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* --- MODERN CSS STYLING --- */
         :root {
-            --primary: #00f2ff;
-            --secondary: #7000ff;
-            --bg: #0a0a0a;
-            --card-bg: #161616;
-            --text: #ffffff;
-            --accent-green: #00ff88;
+            --primary-color: #007BFF; /* A professional blue */
+            --secondary-color: #28a745; /* A medical/health green */
+            --text-color: #333;
+            --bg-light: #f8f9fa;
         }
-
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-        }
-
-        html { scroll-behavior: smooth; }
-
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-            background: rgba(10, 10, 10, 0.95);
-            position: fixed;
-            width: 90%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #333;
-        }
-
-        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            transition: color 0.3s;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .nav-links a:hover { color: var(--primary); }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
-            padding: 0 20px;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            background: -webkit-linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        p.subtitle {
-            font-size: 1.2rem;
-            max-width: 600px;
-            color: #ccc;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: linear-gradient(90deg, var(--secondary), var(--primary));
-        }
-        .btn-primary:hover { box-shadow: 0 0 20px rgba(0, 242, 255, 0.6); }
-
-        /* PORTFOLIO SECTION (This is the NEW section) */
-        .portfolio {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-        }
-        .section-title span { color: var(--primary); }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid #333;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .project-header {
-            background: #222;
-            padding: 15px 20px;
-            border-bottom: 1px solid #333;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .project-status {
-            font-size: 0.8rem;
-            background: rgba(0, 255, 136, 0.1);
-            color: var(--accent-green);
-            padding: 4px 8px;
-            border-radius: 4px;
-        }
-
-        .project-body { padding: 20px; }
-
-        .project-body h3 { margin-top: 0; color: white; }
-        
-        .tech-stack {
-            margin: 15px 0;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .tech-tag {
-            background: #333;
-            color: #ccc;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-
-        .impact-box {
-            background: rgba(0, 242, 255, 0.05);
-            border-left: 3px solid var(--primary);
-            padding: 10px;
-            margin: 15px 0;
-            font-size: 0.9rem;
-            color: #ddd;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 80px 20px;
-            text-align: center;
-            background: #111;
-            margin-top: 50px;
-        }
-
-        .contact-link {
-            display: inline-block;
-            margin: 10px 20px;
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            border: 1px solid #333;
-            padding: 10px 20px;
-            border-radius: 30px;
-            transition: 0.3s;
-        }
-        .contact-link:hover { background: var(--primary); color: black; border-color: var(--primary); }
-
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            nav { padding: 15px; justify-content: center; }
-            .nav-links { display: none; }
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text-color); }
+        .hero-section { background-color: var(--bg-light); padding: 80px 0; }
+        .expertise-badge { background-color: var(--secondary-color); color: white; margin-right: 10px; margin-bottom: 10px; display: inline-block; padding: 5px 10px; border-radius: 5px; font-size: 0.9em; }
+        .project-card { border-left: 5px solid var(--primary-color); transition: transform 0.3s; }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+        .timeline-item { border-left: 3px solid #ccc; padding-left: 20px; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -8px; top: 0; width: 15px; height: 15px; border-radius: 50%; background: var(--primary-color); border: 3px solid white; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">HARSHA.AI</div>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#portfolio">Projects</a>
-            <a href="#contact">Hire Me</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Dr. Harsha Reddy Alla</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#expertise">Expertise</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">AI Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-    <section id="home" class="hero">
-        <h1>AI Automation Engineer</h1>
-        <p class="subtitle">I build automated systems that save time, reduce costs, and scale operations using Python & AI Agents.</p>
-        <a href="#portfolio" class="btn btn-primary">View My Work</a>
-    </section>
-
-    <section id="portfolio" class="portfolio">
-        <h2 class="section-title">Featured <span>Projects</span></h2>
-        
-        <div class="project-grid">
-
-            <div class="project-card">
-                <div class="project-header">
-                    <strong>Auto-Content Generator</strong>
-                    <span class="project-status">Completed</span>
-                </div>
-                <div class="project-body">
-                    <h3>Automated Video/Blog Pipeline</h3>
-                    <p>A system that takes a simple topic and automatically generates scripts, voiceovers, and blog posts.</p>
-                    
-                    <div class="impact-box">
-                        <strong>🚀 Result:</strong> Reduced content creation time by 90% (from 5 hours to 30 mins).
-                    </div>
-
-                    <div class="tech-stack">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">OpenAI API</span>
-                        <span class="tech-tag">MoviePy</span>
-                    </div>
-                </div>
+    <section id="hero" class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold text-primary">AI-Driven Product & Medical Affairs Leader</h1>
+            <p class="lead text-muted">Doctor in Pharmacy (Pharm D) & MBA | Specializing in Oncology, Cardiology, and **Python/GenAI Automation**.</p>
+            <div class="mt-4">
+                <a href="mailto:reddy.harsha183@gmail.com" class="btn btn-primary btn-lg me-2"><i class="fas fa-envelope"></i> Contact Me</a>
+                <a href="#experience" class="btn btn-outline-secondary btn-lg">View Experience</a>
             </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <strong>Medical Data Scraper</strong>
-                    <span class="project-status">Live</span>
-                </div>
-                <div class="project-body">
-                    <h3>Research Document Analyzer</h3>
-                    <p>An AI agent that reads through complex PDF reports and extracts key data points into Excel automatically.</p>
-                    
-                    <div class="impact-box">
-                        <strong>⚡ Impact:</strong> Automated analysis of 500+ documents with zero manual error.
-                    </div>
-
-                    <div class="tech-stack">
-                        <span class="tech-tag">LangChain</span>
-                        <span class="tech-tag">Pinecone</span>
-                        <span class="tech-tag">Streamlit</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <strong>Smart Email Bot</strong>
-                    <span class="project-status">Beta</span>
-                </div>
-                <div class="project-body">
-                    <h3>Customer Inquiry Auto-Responder</h3>
-                    <p>Classifies incoming emails and drafts appropriate responses for review, handling scheduling and FAQs.</p>
-                    
-                    <div class="impact-box">
-                        <strong>💼 ROI:</strong> Handles 50+ inquiries daily without human intervention.
-                    </div>
-
-                    <div class="tech-stack">
-                        <span class="tech-tag">Zapier</span>
-                        <span class="tech-tag">ChatGPT</span>
-                        <span class="tech-tag">Gmail API</span>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
-    <section id="contact" class="contact">
-        <h2>Ready to automate your workflow?</h2>
-        <p style="color: #999; margin-bottom: 30px;">Available for freelance and full-time roles.</p>
-        
-        <div>
-            <a href="tel:+919008453536" class="contact-link">📞 +91 9008453536</a>
-            <a href="mailto:reddy.harsha183@gmail.com" class="contact-link">✉️ reddy.harsha183@gmail.com</a>
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">About Me</h2>
+            <p class="fs-5 text-center mx-auto" style="max-width: 800px;">
+                I am a Product Manager & Medical Affairs Professional with **6+ years of cross-functional experience** across Oncology, Cardiology, and Neurology. I hold a **Doctor in Pharmacy and an MBA**, enabling me to combine clinical acumen with strategic business insight. My focus is driving digital transformation and international market expansion by leveraging **AI agents and Python** for automation, data-driven strategy, and medical affairs excellence.
+            </p>
+            <div class="text-center mt-4">
+                <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="text-primary me-3"><i class="fab fa-linkedin fa-2x"></i></a>
+                <a href="https://github.com/sprint-droid" target="_blank" class="text-primary me-3"><i class="fab fa-github fa-2x"></i></a>
+            </div>
         </div>
     </section>
+
+    <hr class="my-5">
+
+    <section id="expertise" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Core Expertise & Technical Mastery</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <h4 class="text-primary mb-3"><i class="fas fa-hospital-user me-2"></i> Clinical & Business Strategy</h4>
+                    <p class="expertise-badge">Product Lifecycle Management (PLM)</p>
+                    <p class="expertise-badge">Go-To-Market (GTM) Strategy</p>
+                    <p class="expertise-badge">Market Access & Global Expansion</p>
+                    <p class="expertise-badge">KOL Engagement & Medical Affairs</p>
+                    <p class="expertise-badge">Regulatory & Compliance (ICH, EMA, US FDA)</p>
+                    <p class="expertise-badge">Therapy Areas: Oncology, Cardiology, Neurology</p>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h4 class="text-primary mb-3"><i class="fas fa-robot me-2"></i> AI, Automation & Data Mastery</h4>
+                    <p class="expertise-badge bg-danger">Digital Health (AI/ML)</p>
+                    <p class="expertise-badge bg-danger">Python Code Implementation</p>
+                    <p class="expertise-badge bg-danger">AI Agent Development (GenAI & Automation)</p>
+                    <p class="expertise-badge">SQL & Data-driven Decision Making</p>
+                    <p class="expertise-badge">CRM & Safety Platforms (Veeva, Oracle Argus)</p>
+                    <p class="expertise-badge">Real-World Evidence (RWE) Generation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Work Experience</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+
+                    <div class="timeline-item mb-5">
+                        <h4 class="mb-1 text-primary">Product Manager - Clinical Strategy & AI Digital Health</h4>
+                        <p class="text-muted mb-1">LIFESIGNALS, Bangalore, India | 17/04/2023 - CURRENT</p>
+                        <ul>
+                            <li>Spearheading product strategy and global GTM for the **Al-driven Ubiq Vue™ Wireless Biosensor** across Oncology, Cardiology, and Neurology.</li>
+                            <li>Drove digital health innovation, leveraging **Machine Learning** to predict early cardiac and neurological deterioration, positioning the product as a leader in hospital-to-home care.</li>
+                            <li>Partnered with Data Science, leveraging **SQL** and advanced analytics to generate clinical insights.</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item mb-5">
+                        <h4 class="mb-1">Medical Science Liaison - International Emerging Markets</h4>
+                        <p class="text-muted mb-1">HETERO LABS, Hyderabad, India | 03/03/2022 - 17/06/2023</p>
+                        <ul>
+                            <li>Led medical and marketing strategy across LATAM, CIS, and MENA, achieving **\$5M+ revenue growth** and strengthening brand presence.</li>
+                            <li>Executed scientific campaigns, CMEs, and KOL programs, driving therapy awareness and accelerating product adoption.</li>
+                            <li>Awarded the **Contribution Trophy** for strategic leadership and execution excellence.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5 text-primary">AI & Automation Portfolio: Interactive Projects</h2>
+            <p class="text-center mb-4 lead text-danger">Showcasing mastery in using Python and AI to automate workflows and drive medical strategy.</p>
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 project-card p-3">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">AI Agent for Regulatory & Competitive Intelligence</h5>
+                            <span class="badge bg-dark me-2">Python</span><span class="badge bg-dark me-2">GenAI</span><span class="badge bg-dark">Automation</span>
+                            <p class="card-text mt-3">**Problem:** Manually tracking complex, country-specific regulatory updates (e.g., EMA/US FDA guidelines) and competitor launches across International Emerging Markets.</p>
+                            <p class="card-text">**Solution:** Developed a multi-step **Python/AI Agent** to automate web scraping and semantic analysis of regulatory documents. The agent provides summarized, prioritized alerts, enabling faster GTM decision-making.</p>
+                            <a href="https://github.com/sprint-droid/ai-reg-agent" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fab fa-github"></i> View Code & Architecture</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 project-card p-3">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">RWE Data Validation & Visualization Tool</h5>
+                            <span class="badge bg-dark me-2">Python (Pandas)</span><span class="badge bg-dark me-2">SQL</span><span class="badge bg-dark">Data Validation</span>
+                            <p class="card-text mt-3">**Problem:** Inefficient process for ingesting and validating Real-World Evidence (RWE) data from clinical collaborations for post-market studies.</p>
+                            <p class="card-text">**Solution:** Implemented a **Python (Pandas)** script integrated with a **SQL** backend to automatically clean, validate for outliers, and flag discrepancies in RWE datasets, cutting manual data prep time by an estimated **30%**.</p>
+                            <a href="https://github.com/sprint-droid/rwe-validation-tool" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fas fa-chart-bar"></i> View Tool Demo (Live App/Screenshots)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Education & Credentials</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="text-primary"><i class="fas fa-graduation-cap me-2"></i> Education</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <h5 class="fw-bold">MASTERS IN BUSINESS ADMINISTRATION (MBA)</h5>
+                            <p class="text-muted mb-0">Europe Academy | 10/2022 - 10/2023</p>
+                        </li>
+                        <li class="mb-3">
+                            <h5 class="fw-bold">DOCTOR IN PHARMACY (PHARMA D)</h5>
+                            <p class="text-muted mb-0">Rajiv Gandhi University of Health Sciences | 2013 - 2019</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="text-primary"><i class="fas fa-book-open me-2"></i> Publications & Thesis</h4>
+                    <p class="fw-bold">Assessment Of Knowledge, Attitude and Practice Of Caregivers in Children With Epilepsy</p>
+                    <p class="text-muted fst-italic">Published in International Journal Of Healthcare science, April 2019</p>
+                    <p class="fw-bold">Thesis: Determining the Quality of Life of Caregivers in Children with Epilepsy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 Dr. Harshavardhan Reddy Alla. Built for impact.</p>
+            <p class="mb-0">Phone: (+91) 9008453536 | Email: reddy.harsha183@gmail.com</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
