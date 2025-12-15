@@ -8,25 +8,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --primary-color: #007BFF; /* A professional blue */
-            --secondary-color: #28a745; /* A medical/health green */
-            --text-color: #333;
-            --bg-light: #f8f9fa;
+            --primary-color: #008080; /* Teal/Blue-Green - Professional & Tech/Health */
+            --accent-color: #FF5733;  /* Bright Orange - Interactive & AI Focus */
+            --text-color: #212529;
+            --bg-light: #f4fcfc;
+            --bg-dark-nav: #004d4d; /* Darker Teal for Nav */
         }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text-color); }
         .hero-section { background-color: var(--bg-light); padding: 80px 0; }
-        .expertise-badge { background-color: var(--secondary-color); color: white; margin-right: 10px; margin-bottom: 10px; display: inline-block; padding: 5px 10px; border-radius: 5px; font-size: 0.9em; }
-        .project-card { border-left: 5px solid var(--primary-color); transition: transform 0.3s; }
-        .project-card:hover { transform: translateY(-5px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+        .hero-section h1 { color: var(--primary-color) !important; }
+        .expertise-badge { background-color: var(--primary-color); color: white; margin-right: 10px; margin-bottom: 10px; display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 0.9em; font-weight: 500;}
+        .ai-badge { background-color: var(--accent-color); color: white; }
+        
+        .project-card { border-left: 5px solid var(--accent-color); transition: transform 0.3s, box-shadow 0.3s; }
+        .project-card:hover { transform: translateY(-7px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); }
         .timeline-item { border-left: 3px solid #ccc; padding-left: 20px; position: relative; }
-        .timeline-item::before { content: ''; position: absolute; left: -8px; top: 0; width: 15px; height: 15px; border-radius: 50%; background: var(--primary-color); border: 3px solid white; }
+        .timeline-item::before { content: ''; position: absolute; left: -8px; top: 0; width: 15px; height: 15px; border-radius: 50%; background: var(--primary-color); border: 3px solid white; box-shadow: 0 0 0 3px var(--primary-color); }
+        .btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); transition: background-color 0.3s; }
+        .btn-primary:hover { background-color: #006666; border-color: #006666; }
+        .btn-accent { background-color: var(--accent-color); border-color: var(--accent-color); color: white; }
+        .btn-accent:hover { background-color: #e64c2a; border-color: #e64c2a; }
+        .text-primary-custom { color: var(--primary-color) !important; }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--bg-dark-nav);">
         <div class="container">
-            <a class="navbar-brand" href="#">Dr. Harsha Reddy Alla</a>
+            <a class="navbar-brand fw-bold" href="#">Dr. Harsha Reddy Alla</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
@@ -41,51 +53,51 @@
 
     <section id="hero" class="hero-section text-center">
         <div class="container">
-            <h1 class="display-4 fw-bold text-primary">AI-Driven Product & Medical Affairs Leader</h1>
-            <p class="lead text-muted">Doctor in Pharmacy (Pharm D) & MBA | Specializing in Oncology, Cardiology, and **Python/GenAI Automation**.</p>
+            <h1 class="display-4 fw-bolder">AI-Driven Product & Medical Affairs Leader</h1>
+            <p class="lead text-secondary">Doctor in Pharmacy (Pharm D) & MBA | Specializing in Oncology, Cardiology, and **Python/GenAI Automation**.</p>
             <div class="mt-4">
-                <a href="mailto:reddy.harsha183@gmail.com" class="btn btn-primary btn-lg me-2"><i class="fas fa-envelope"></i> Contact Me</a>
-                <a href="#experience" class="btn btn-outline-secondary btn-lg">View Experience</a>
+                <a href="https://www.linkedin.com/in/dr-harshavardhan-reddy-7441a9219/" target="_blank" class="btn btn-primary btn-lg me-2"><i class="fab fa-linkedin"></i> Connect on LinkedIn</a>
+                <a href="mailto:reddy.harsha183@gmail.com" class="btn btn-accent btn-lg"><i class="fas fa-envelope"></i> Email Me</a>
             </div>
         </div>
     </section>
 
     <section id="about" class="py-5">
         <div class="container">
-            <h2 class="text-center mb-4">About Me</h2>
+            <h2 class="text-center mb-4 text-primary-custom">About Me</h2>
             <p class="fs-5 text-center mx-auto" style="max-width: 800px;">
-                I am a Product Manager & Medical Affairs Professional with **6+ years of cross-functional experience** across Oncology, Cardiology, and Neurology. I hold a **Doctor in Pharmacy and an MBA**, enabling me to combine clinical acumen with strategic business insight. My focus is driving digital transformation and international market expansion by leveraging **AI agents and Python** for automation, data-driven strategy, and medical affairs excellence.
+                [cite_start]I am a Product Manager & Medical Affairs Professional with **6+ years of cross-functional experience** across Oncology, Cardiology, and Neurology[cite: 4, 32]. [cite_start]I hold a **Doctor in Pharmacy and an MBA**[cite: 6], enabling me to combine clinical acumen with strategic business insight. My focus is driving digital transformation and international market expansion by leveraging **AI agents and Python** for automation, data-driven strategy, and medical affairs excellence.
             </p>
             <div class="text-center mt-4">
-                <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="text-primary me-3"><i class="fab fa-linkedin fa-2x"></i></a>
-                <a href="https://github.com/sprint-droid" target="_blank" class="text-primary me-3"><i class="fab fa-github fa-2x"></i></a>
+                <a href="https://www.linkedin.com/in/dr-harshavardhan-reddy-7441a9219/" target="_blank" class="text-primary-custom me-3"><i class="fab fa-linkedin fa-2x"></i></a>
+                <a href="https://github.com/sprint-droid" target="_blank" class="text-primary-custom me-3"><i class="fab fa-github fa-2x"></i></a>
             </div>
         </div>
     </section>
 
     <hr class="my-5">
 
-    <section id="expertise" class="py-5 bg-light">
+    <section id="expertise" class="py-5" style="background-color: var(--bg-light);">
         <div class="container">
-            <h2 class="text-center mb-5">Core Expertise & Technical Mastery</h2>
+            <h2 class="text-center mb-5 text-primary-custom">Core Expertise & Technical Mastery</h2>
             <div class="row">
                 <div class="col-md-6 mb-4">
-                    <h4 class="text-primary mb-3"><i class="fas fa-hospital-user me-2"></i> Clinical & Business Strategy</h4>
-                    <p class="expertise-badge">Product Lifecycle Management (PLM)</p>
-                    <p class="expertise-badge">Go-To-Market (GTM) Strategy</p>
-                    <p class="expertise-badge">Market Access & Global Expansion</p>
-                    <p class="expertise-badge">KOL Engagement & Medical Affairs</p>
-                    <p class="expertise-badge">Regulatory & Compliance (ICH, EMA, US FDA)</p>
-                    <p class="expertise-badge">Therapy Areas: Oncology, Cardiology, Neurology</p>
+                    <h4 class="text-primary-custom mb-3"><i class="fas fa-hospital-user me-2"></i> Clinical & Business Strategy</h4>
+                    [cite_start]<p class="expertise-badge">Product Lifecycle Management (PLM) [cite: 8, 59]</p>
+                    [cite_start]<p class="expertise-badge">Go-To-Market (GTM) Strategy [cite: 8, 59]</p>
+                    [cite_start]<p class="expertise-badge">Market Access & Global Expansion [cite: 9, 61]</p>
+                    [cite_start]<p class="expertise-badge">KOL Engagement & Medical Affairs [cite: 10, 60]</p>
+                    [cite_start]<p class="expertise-badge">Regulatory & Compliance (ICH, EMA, US FDA) [cite: 10, 37, 60]</p>
+                    [cite_start]<p class="expertise-badge">Therapy Areas: Oncology, Cardiology, Neurology [cite: 4, 25, 32]</p>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <h4 class="text-primary mb-3"><i class="fas fa-robot me-2"></i> AI, Automation & Data Mastery</h4>
-                    <p class="expertise-badge bg-danger">Digital Health (AI/ML)</p>
-                    <p class="expertise-badge bg-danger">Python Code Implementation</p>
-                    <p class="expertise-badge bg-danger">AI Agent Development (GenAI & Automation)</p>
-                    <p class="expertise-badge">SQL & Data-driven Decision Making</p>
-                    <p class="expertise-badge">CRM & Safety Platforms (Veeva, Oracle Argus)</p>
-                    <p class="expertise-badge">Real-World Evidence (RWE) Generation</p>
+                    <h4 style="color: var(--accent-color);" class="mb-3"><i class="fas fa-robot me-2"></i> AI, Automation & Data Mastery</h4>
+                    [cite_start]<p class="expertise-badge ai-badge">Digital Health (AI/ML) [cite: 8, 18, 60]</p>
+                    <p class="expertise-badge ai-badge">Python Code Implementation</p>
+                    <p class="expertise-badge ai-badge">AI Agent Development (GenAI & Automation)</p>
+                    [cite_start]<p class="expertise-badge">SQL & Data-driven Decision Making [cite: 5, 15, 60]</p>
+                    [cite_start]<p class="expertise-badge">CRM & Safety Platforms (Veeva, Oracle Argus) [cite: 5, 28, 36]</p>
+                    [cite_start]<p class="expertise-badge">Real-World Evidence (RWE) Generation [cite: 16]</p>
                 </div>
             </div>
         </div>
@@ -93,27 +105,27 @@
 
     <section id="experience" class="py-5">
         <div class="container">
-            <h2 class="text-center mb-5">Work Experience</h2>
+            <h2 class="text-center mb-5 text-primary-custom">Work Experience</h2>
             <div class="row">
                 <div class="col-lg-8 mx-auto">
 
                     <div class="timeline-item mb-5">
-                        <h4 class="mb-1 text-primary">Product Manager - Clinical Strategy & AI Digital Health</h4>
-                        <p class="text-muted mb-1">LIFESIGNALS, Bangalore, India | 17/04/2023 - CURRENT</p>
+                        <h4 class="mb-1 text-primary-custom">Product Manager - Clinical Strategy & AI Digital Health</h4>
+                        <p class="text-muted mb-1">LIFESIGNALS, Bangalore, India | [cite_start]17/04/2023 - CURRENT [cite: 12, 13]</p>
                         <ul>
-                            <li>Spearheading product strategy and global GTM for the **Al-driven Ubiq Vue™ Wireless Biosensor** across Oncology, Cardiology, and Neurology.</li>
-                            <li>Drove digital health innovation, leveraging **Machine Learning** to predict early cardiac and neurological deterioration, positioning the product as a leader in hospital-to-home care.</li>
-                            <li>Partnered with Data Science, leveraging **SQL** and advanced analytics to generate clinical insights.</li>
+                            [cite_start]<li>Spearheading product strategy and global GTM for the **Al-driven Ubiq Vue™ Wireless Biosensor** across Oncology, Cardiology, and Neurology[cite: 14].</li>
+                            [cite_start]<li>Drove digital health innovation, leveraging **Machine Learning** to predict early cardiac and neurological deterioration[cite: 18].</li>
+                            [cite_start]<li>Partnered with Data Science, leveraging **SQL** and advanced analytics to generate clinical insights[cite: 15].</li>
                         </ul>
                     </div>
 
                     <div class="timeline-item mb-5">
                         <h4 class="mb-1">Medical Science Liaison - International Emerging Markets</h4>
-                        <p class="text-muted mb-1">HETERO LABS, Hyderabad, India | 03/03/2022 - 17/06/2023</p>
+                        <p class="text-muted mb-1">HETERO LABS, Hyderabad, India | [cite_start]03/03/2022 - 17/06/2023 [cite: 19, 20]</p>
                         <ul>
-                            <li>Led medical and marketing strategy across LATAM, CIS, and MENA, achieving **\$5M+ revenue growth** and strengthening brand presence.</li>
-                            <li>Executed scientific campaigns, CMEs, and KOL programs, driving therapy awareness and accelerating product adoption.</li>
-                            <li>Awarded the **Contribution Trophy** for strategic leadership and execution excellence.</li>
+                            [cite_start]<li>Led medical and marketing strategy across LATAM, CIS, and MENA, achieving **\$5M+ revenue growth** and strengthening brand presence[cite: 21].</li>
+                            [cite_start]<li>Executed scientific campaigns, CMEs, and KOL programs, driving therapy awareness and accelerating product adoption[cite: 22].</li>
+                            [cite_start]<li>Awarded the **Contribution Trophy** for strategic leadership and execution excellence[cite: 26, 56].</li>
                         </ul>
                     </div>
                 </div>
@@ -121,20 +133,20 @@
         </div>
     </section>
 
-    <section id="projects" class="py-5 bg-light">
+    <section id="projects" class="py-5" style="background-color: var(--bg-light);">
         <div class="container">
-            <h2 class="text-center mb-5 text-primary">AI & Automation Portfolio: Interactive Projects</h2>
-            <p class="text-center mb-4 lead text-danger">Showcasing mastery in using Python and AI to automate workflows and drive medical strategy.</p>
+            <h2 class="text-center mb-5" style="color: var(--accent-color);">AI & Automation Portfolio: Interactive Projects</h2>
+            <p class="text-center mb-4 lead text-secondary">Showcasing mastery in using Python and AI to automate workflows and drive medical strategy.</p>
 
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="card h-100 project-card p-3">
                         <div class="card-body">
-                            <h5 class="card-title text-primary">AI Agent for Regulatory & Competitive Intelligence</h5>
-                            <span class="badge bg-dark me-2">Python</span><span class="badge bg-dark me-2">GenAI</span><span class="badge bg-dark">Automation</span>
-                            <p class="card-text mt-3">**Problem:** Manually tracking complex, country-specific regulatory updates (e.g., EMA/US FDA guidelines) and competitor launches across International Emerging Markets.</p>
+                            <h5 class="card-title text-primary-custom">AI Agent for Regulatory & Competitive Intelligence</h5>
+                            <span class="badge ai-badge me-2">Python</span><span class="badge ai-badge me-2">GenAI</span><span class="badge ai-badge">Automation</span>
+                            [cite_start]<p class="card-text mt-3">**Problem:** Manually tracking complex, country-specific regulatory updates (e.g., EMA/US FDA guidelines [cite: 10, 37][cite_start]) and competitor launches across International Emerging Markets[cite: 20].</p>
                             <p class="card-text">**Solution:** Developed a multi-step **Python/AI Agent** to automate web scraping and semantic analysis of regulatory documents. The agent provides summarized, prioritized alerts, enabling faster GTM decision-making.</p>
-                            <a href="https://github.com/sprint-droid/ai-reg-agent" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fab fa-github"></i> View Code & Architecture</a>
+                            <a href="https://github.com/sprint-droid/ai-reg-agent" target="_blank" class="btn btn-sm btn-accent"><i class="fab fa-github"></i> View Code & Architecture</a>
                         </div>
                     </div>
                 </div>
@@ -142,11 +154,11 @@
                 <div class="col-md-6 mb-4">
                     <div class="card h-100 project-card p-3">
                         <div class="card-body">
-                            <h5 class="card-title text-primary">RWE Data Validation & Visualization Tool</h5>
-                            <span class="badge bg-dark me-2">Python (Pandas)</span><span class="badge bg-dark me-2">SQL</span><span class="badge bg-dark">Data Validation</span>
-                            <p class="card-text mt-3">**Problem:** Inefficient process for ingesting and validating Real-World Evidence (RWE) data from clinical collaborations for post-market studies.</p>
+                            <h5 class="card-title text-primary-custom">RWE Data Validation & Visualization Tool</h5>
+                            <span class="badge ai-badge me-2">Python (Pandas)</span><span class="badge ai-badge me-2">SQL</span><span class="badge ai-badge">Data Validation</span>
+                            [cite_start]<p class="card-text mt-3">**Problem:** Inefficient process for ingesting and validating Real-World Evidence (RWE) data from clinical collaborations for post-market studies[cite: 16].</p>
                             <p class="card-text">**Solution:** Implemented a **Python (Pandas)** script integrated with a **SQL** backend to automatically clean, validate for outliers, and flag discrepancies in RWE datasets, cutting manual data prep time by an estimated **30%**.</p>
-                            <a href="https://github.com/sprint-droid/rwe-validation-tool" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fas fa-chart-bar"></i> View Tool Demo (Live App/Screenshots)</a>
+                            <a href="https://github.com/sprint-droid/rwe-validation-tool" target="_blank" class="btn btn-sm btn-accent"><i class="fas fa-chart-bar"></i> View Tool Demo (Live App/Screenshots)</a>
                         </div>
                     </div>
                 </div>
@@ -156,35 +168,35 @@
 
     <section id="education" class="py-5">
         <div class="container">
-            <h2 class="text-center mb-5">Education & Credentials</h2>
+            <h2 class="text-center mb-5 text-primary-custom">Education & Credentials</h2>
             <div class="row">
                 <div class="col-md-6">
-                    <h4 class="text-primary"><i class="fas fa-graduation-cap me-2"></i> Education</h4>
+                    <h4 class="text-primary-custom"><i class="fas fa-graduation-cap me-2"></i> Education</h4>
                     <ul class="list-unstyled">
                         <li class="mb-3">
                             <h5 class="fw-bold">MASTERS IN BUSINESS ADMINISTRATION (MBA)</h5>
-                            <p class="text-muted mb-0">Europe Academy | 10/2022 - 10/2023</p>
+                            <p class="text-muted mb-0">Europe Academy | [cite_start]10/2022 - 10/2023 [cite: 39, 40]</p>
                         </li>
                         <li class="mb-3">
                             <h5 class="fw-bold">DOCTOR IN PHARMACY (PHARMA D)</h5>
-                            <p class="text-muted mb-0">Rajiv Gandhi University of Health Sciences | 2013 - 2019</p>
+                            <p class="text-muted mb-0">Rajiv Gandhi University of Health Sciences | [cite_start]2013 - 2019 [cite: 41, 42]</p>
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-6">
-                    <h4 class="text-primary"><i class="fas fa-book-open me-2"></i> Publications & Thesis</h4>
-                    <p class="fw-bold">Assessment Of Knowledge, Attitude and Practice Of Caregivers in Children With Epilepsy</p>
-                    <p class="text-muted fst-italic">Published in International Journal Of Healthcare science, April 2019</p>
-                    <p class="fw-bold">Thesis: Determining the Quality of Life of Caregivers in Children with Epilepsy.</p>
+                    <h4 class="text-primary-custom"><i class="fas fa-book-open me-2"></i> Publications & Thesis</h4>
+                    [cite_start]<p class="fw-bold">Assessment Of Knowledge, Attitude and Practice Of Caregivers in Children With Epilepsy [cite: 45]</p>
+                    [cite_start]<p class="text-muted fst-italic">Published in International Journal Of Healthcare science, April 2019 [cite: 47]</p>
+                    [cite_start]<p class="fw-bold">Thesis: Determining the Quality of Life of Caregivers in Children with Epilepsy[cite: 51].</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-dark text-white text-center py-3">
+    <footer style="background-color: var(--bg-dark-nav);" class="text-white text-center py-3">
         <div class="container">
-            <p class="mb-0">&copy; 2025 Dr. Harshavardhan Reddy Alla. Built for impact.</p>
-            <p class="mb-0">Phone: (+91) 9008453536 | Email: reddy.harsha183@gmail.com</p>
+            <p class="mb-0">&copy; 2025 Dr. Harshavardhan Reddy Alla. AI-Driven Strategy.</p>
+            <p class="mb-0">Phone: (+91) 9008453536 | [cite_start]Email: reddy.harsha183@gmail.com [cite: 2]</p>
         </div>
     </footer>
 
