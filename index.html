@@ -12,7 +12,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
         
-        body { background-color: #020617; color: #f8fafc; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
+        body { background-color: #020617; color: #f8fafc; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
         
         /* Glassmorphism */
         .glass-card { 
@@ -30,29 +30,26 @@
         .neon-glow { text-shadow: 0 0 20px rgba(56, 189, 248, 0.8); }
         #canvas-container { position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100%; opacity: 0.35; }
         
-        .interactive-btn { 
-            background: linear-gradient(90deg, #0ea5e9, #2563eb); 
-            transition: 0.4s; 
-            box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
-        }
-        .interactive-btn:hover { filter: brightness(1.2); letter-spacing: 1.5px; transform: scale(1.05); }
-
-        .terminal-bg { background: #000; border-radius: 12px; font-family: 'Courier New', monospace; padding: 20px; color: #10b981; }
-
-        /* Alternating Timeline Logic */
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            width: 2px;
-            height: 100%;
-            background: rgba(56, 189, 248, 0.2);
-            z-index: -1;
+        /* Professional Timeline */
+        .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; }
+        .timeline-line { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: rgba(56, 189, 248, 0.2); }
+        
+        .timeline-dot { 
+            position: absolute; left: 50%; transform: translate(-50%, 20px); 
+            width: 50px; height: 50px; background: #0f172a; border: 2px solid #38bdf8;
+            border-radius: 50%; z-index: 10; display: flex; items-center: center; justify-content: center;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
         }
 
         @media (max-width: 768px) {
-            .timeline-item::before { left: 20px; }
+            .timeline-line { left: 20px; transform: none; }
+            .timeline-dot { left: 20px; transform: translate(-50%, 20px); }
         }
+
+        .interactive-btn { background: linear-gradient(90deg, #0ea5e9, #2563eb); transition: 0.4s; }
+        .interactive-btn:hover { filter: brightness(1.2); letter-spacing: 1.5px; transform: scale(1.05); }
+
+        .terminal-bg { background: #000; border-radius: 12px; font-family: 'Courier New', monospace; padding: 20px; color: #10b981; }
     </style>
 </head>
 <body>
@@ -70,7 +67,7 @@
     </nav>
 
     <section id="about" class="min-h-screen flex flex-col justify-center items-center px-6 text-center pt-32 md:pt-40">
-        <div class="animate__animated animate__zoomIn">
+        <div class="animate__animated animate__fadeIn">
             <div class="w-48 h-48 mx-auto mb-10 rounded-full border-4 border-sky-500/50 p-1 relative shadow-[0_0_50px_rgba(56,189,248,0.3)] z-10">
                 <div class="w-full h-full rounded-full overflow-hidden">
                     <img src="https://media.licdn.com/dms/image/v2/D4D03AQEG6wJytpgfkg/profile-displayphoto-scale_400_400/B4DZw8fNatGgAk-/0/1770541346987?e=1772064000&v=beta&t=HdoSHWOwuppUI6CVqg9o0qeC4y1iED5byR1Nfx7Gu98" alt="Dr. Harsha" class="w-full h-full object-cover">
@@ -82,77 +79,86 @@
             <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter leading-none">AI <span class="text-sky-400 neon-glow">Automation</span><br>Architect</h1>
             <p class="max-w-2xl text-gray-400 text-lg md:text-xl leading-relaxed mx-auto mb-10">
                 Pharm.D & MBA. Orchestrating agentic systems using <strong>Claude, Gemini & GPT</strong>. 
-                Developing high-impact solutions with <strong>Cursor, Supabase & Twilio</strong>.
+                Full-stack developer utilizing <strong>Cursor, Supabase & Twilio</strong> for healthcare innovation.
             </p>
         </div>
     </section>
 
-    <section class="max-w-4xl mx-auto px-6 mb-32">
-        <div class="glass-card p-10 rounded-[2.5rem] text-center border-dashed border-sky-500/40 border-2">
-            <h3 class="text-2xl font-bold mb-4 text-sky-400">Seeking Technical Collaboration 🚀</h3>
-            <p class="text-gray-400 mb-8">I am looking for a talented tech partner/co-founder to help scale high-impact AI projects for the future. If you are a builder with a vision, let's connect.</p>
-            <button onclick="toggleContact()" class="bg-sky-500/20 border border-sky-500 text-sky-400 px-10 py-3 rounded-full font-bold hover:bg-sky-500 hover:text-white transition">Inquire About Partnership</button>
+    <section class="max-w-5xl mx-auto px-6 mb-32">
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="glass-card p-10 rounded-[2.5rem] border-dashed border-sky-500/40 border-2">
+                <h3 class="text-xl font-bold mb-3 text-sky-400">Collaborative Tech Talent 🚀</h3>
+                <p class="text-gray-400 text-sm mb-6">Seeking high-caliber technical partners and co-founders to scale disruptive AI-driven healthcare and fintech ventures.</p>
+                <button onclick="toggleContact()" class="text-sky-400 font-bold hover:underline">Connect for Partnership →</button>
+            </div>
+            <div class="glass-card p-10 rounded-[2.5rem] border-dashed border-emerald-500/40 border-2">
+                <h3 class="text-xl font-bold mb-3 text-emerald-400">Investor Opportunities 💎</h3>
+                <p class="text-gray-400 text-sm mb-6">Actively looking for forward-thinking investors to support and enable the next generation of AI-enabled health-tech solutions.</p>
+                <button onclick="toggleContact()" class="text-emerald-400 font-bold hover:underline">Discuss Investment →</button>
+            </div>
         </div>
     </section>
 
     <section id="experience" class="py-20 px-6 max-w-7xl mx-auto">
-        <h2 class="text-4xl font-bold mb-20 text-center tracking-tight uppercase tracking-widest">Professional <span class="text-sky-400">Trajectory</span></h2>
+        <h2 class="text-4xl font-bold mb-20 text-center uppercase tracking-widest">Professional <span class="text-sky-400">Trajectory</span></h2>
         
-        <div class="relative space-y-20">
-            
-            <div class="flex flex-col md:flex-row justify-end items-center w-full group">
-                <div class="md:w-1/2 md:pl-12">
-                    <div class="glass-card p-8 rounded-[2rem] border-r-8 border-purple-500 animate__animated animate__fadeInRight">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-2xl font-bold text-purple-400">AI Consultant & Founder</h3>
-                            <span class="text-gray-500 font-mono italic">2024 - Present</span>
-                        </div>
-                        <ul class="space-y-3 text-gray-300 text-sm">
-                            <li><i class="fa-solid fa-code text-purple-400 mr-2"></i> <strong>Full-Stack Architect:</strong> Building healthcare tools using Supabase backends.</li>
-                            <li><i class="fa-solid fa-robot text-purple-400 mr-2"></i> <strong>Automation:</strong> Deployed YouTube headless pipelines and Fintech scanners.</li>
-                            <li><i class="fa-solid fa-microchip text-purple-400 mr-2"></i> <strong>Stealth Project:</strong> Orchestrating multi-agent clinical verification systems.</li>
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+
+            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-20">
+                <div class="timeline-dot"><i class="fa-solid fa-code text-sky-400 m-auto"></i></div>
+                <div class="hidden md:block w-1/2"></div>
+                <div class="w-full md:w-[45%] md:pl-8">
+                    <div class="glass-card p-8 rounded-[2rem] border-l-4 border-purple-500">
+                        <h3 class="text-2xl font-bold text-purple-400">AI Consultant & Founder</h3>
+                        <p class="text-gray-500 font-mono italic mb-4">Independent | 2024 - Present</p>
+                        <ul class="space-y-2 text-gray-300 text-sm">
+                            <li><i class="fa-solid fa-check text-purple-500 mr-2"></i> Building full-stack AI tools with Supabase backends.</li>
+                            <li><i class="fa-solid fa-check text-purple-500 mr-2"></i> Deployed YT Automation & Fintech scanners.</li>
+                            <li><i class="fa-solid fa-check text-purple-500 mr-2"></i> Architecting agentic clinical verification systems.</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="flex flex-col md:flex-row justify-start items-center w-full group">
-                <div class="md:w-1/2 md:pr-12">
-                    <div class="glass-card p-8 rounded-[2rem] border-l-8 border-sky-500 animate__animated animate__fadeInLeft">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-2xl font-bold text-sky-400">Medical Affairs & AI Architect</h3>
-                            <span class="text-gray-500 font-mono italic">LifeSignals | 2023 - Present</span>
-                        </div>
-                        <ul class="space-y-3 text-gray-300 text-sm">
-                            <li><i class="fa-solid fa-bolt text-sky-400 mr-2"></i> <strong>Efficiency:</strong> Reduced manual trial data interpretation time by 40% via AI.</li>
-                            <li><i class="fa-solid fa-users text-sky-400 mr-2"></i> <strong>KOL Network:</strong> Managing global clinical strategy with Top-Tier experts.</li>
-                            <li><i class="fa-solid fa-flask text-sky-400 mr-2"></i> <strong>Product Strategy:</strong> Bridge between engineering and clinical for GTM readiness.</li>
+            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-20">
+                <div class="timeline-dot"><i class="fa-solid fa-heart-pulse text-sky-400 m-auto"></i></div>
+                <div class="w-full md:w-[45%] md:pr-8 text-right order-2 md:order-1">
+                    <div class="glass-card p-8 rounded-[2rem] border-r-4 border-sky-500">
+                        <h3 class="text-2xl font-bold text-sky-400">Medical Affairs & AI Architect</h3>
+                        <p class="text-gray-500 font-mono italic mb-4">LifeSignals | 2023 - Present</p>
+                        <ul class="space-y-2 text-gray-300 text-sm">
+                            <li>40% faster trial data interpretation via AI workflows. <i class="fa-solid fa-check text-sky-500 ml-2"></i></li>
+                            <li>Managing Global KOLs for scientific alignment. <i class="fa-solid fa-check text-sky-500 ml-2"></i></li>
+                            <li>Strategic bridge between engineering & clinical teams. <i class="fa-solid fa-check text-sky-500 ml-2"></i></li>
                         </ul>
                     </div>
                 </div>
+                <div class="hidden md:block w-1/2 order-1 md:order-2"></div>
             </div>
 
-            <div class="flex flex-col md:flex-row justify-end items-center w-full group">
-                <div class="md:w-1/2 md:pl-12">
-                    <div class="glass-card p-8 rounded-[2rem] border-r-8 border-gray-600 animate__animated animate__fadeInRight">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-2xl font-bold text-gray-300">Medical Science Liaison (MSL)</h3>
-                            <span class="text-gray-500 font-mono italic">Hetero Labs | 2022 - 2023</span>
-                        </div>
-                        <p class="text-gray-400 text-sm mb-4">Orchestrated Oncology/Neurology data strategies. Led scientific advisory boards and mapping for 100+ KOLs.</p>
-                        <p class="text-gray-400 text-sm">Improved regional medical training efficiency and accuracy in data dissemination.</p>
+            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-20">
+                <div class="timeline-dot"><i class="fa-solid fa-dna text-sky-400 m-auto"></i></div>
+                <div class="hidden md:block w-1/2"></div>
+                <div class="w-full md:w-[45%] md:pl-8">
+                    <div class="glass-card p-8 rounded-[2rem] border-l-4 border-emerald-500">
+                        <h3 class="text-2xl font-bold text-emerald-500">Medical Science Liaison (MSL)</h3>
+                        <p class="text-gray-500 font-mono italic mb-4">Hetero Labs | 2022 - 2023</p>
+                        <p class="text-gray-400 text-sm">Orchestrated Oncology/Neurology data strategies. Identified key clinical gaps and managed mapping for 100+ KOLs.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="flex flex-col md:flex-row justify-start items-center w-full group">
-                <div class="md:w-1/2 md:pr-12">
-                    <div class="glass-card p-8 rounded-[2rem] border-l-8 border-gray-600 animate__animated animate__fadeInLeft">
+            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-20">
+                <div class="timeline-dot"><i class="fa-solid fa-shield-virus text-sky-400 m-auto"></i></div>
+                <div class="w-full md:w-[45%] md:pr-8 text-right order-2 md:order-1">
+                    <div class="glass-card p-8 rounded-[2rem] border-r-4 border-gray-600">
                         <h3 class="text-xl font-bold text-white mb-2">Scientific Writing & Drug Safety</h3>
-                        <p class="text-gray-400 text-sm italic mb-4">Indegene & Navitas | 2020 - 2022</p>
-                        <p class="text-gray-400 text-sm">Pioneered early automated literature review workflows. Managed pharmacovigilance reports and drug safety compliance for global markets.</p>
+                        <p class="text-gray-500 font-mono italic mb-4">Indegene & Navitas | 2020 - 2022</p>
+                        <p class="text-gray-400 text-sm">Automated literature review workflows and managed pharmacovigilance reports with 100% safety compliance.</p>
                     </div>
                 </div>
+                <div class="hidden md:block w-1/2 order-1 md:order-2"></div>
             </div>
         </div>
     </section>
@@ -196,7 +202,7 @@
         </div>
     </section>
 
-    <section class="py-20 px-6 max-w-5xl mx-auto">
+    <section class="py-20 px-6 max-w-5xl mx-auto mb-20">
         <h2 class="text-3xl font-bold mb-12 text-center text-gray-500 uppercase tracking-[0.4em]">Future Roadmap</h2>
         <div class="grid md:grid-cols-2 gap-8">
             <div class="glass-card p-8 rounded-[2rem] border-t-4 border-blue-500">
@@ -228,12 +234,22 @@
     <div id="sim-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/90">
         <div class="w-full max-w-2xl terminal-bg h-96 overflow-hidden flex flex-col">
             <div class="flex justify-between items-center mb-4 border-b border-green-500/30 pb-2">
-                <span id="sim-title" class="font-bold text-xs text-white">AGENT_SYSTEM_INIT</span>
+                <span id="sim-title" class="text-xs font-bold text-white">AGENT_SYSTEM_INIT</span>
                 <button onclick="document.getElementById('sim-modal').classList.add('hidden')" class="text-red-500">CLOSE</button>
             </div>
             <div id="sim-output" class="flex-1 overflow-y-auto space-y-2 text-sm text-green-500"></div>
         </div>
     </div>
+
+    <footer class="py-12 px-6 border-t border-white/5 text-center">
+        <div class="flex justify-center gap-6 mb-8">
+            <a href="https://linkedin.com/in/dr-harshavardhan-reddy-7441a9219/" target="_blank" class="text-2xl hover:text-sky-400 transition"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:reddy.harsha183@gmail.com" class="text-2xl hover:text-sky-400 transition"><i class="fa-solid fa-envelope"></i></a>
+            <a href="tel:+919008453536" class="text-2xl hover:text-emerald-400 transition"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <p class="text-slate-500 text-sm mb-2">© 2026 Dr. Harshavardhan Reddy. All Rights Reserved.</p>
+        <p class="text-slate-600 text-xs tracking-widest uppercase">Built with AI-Augmented Engineering</p>
+    </footer>
 
     <script>
         const container = document.getElementById('canvas-container');
@@ -259,9 +275,9 @@
             const title = document.getElementById('sim-title');
             modal.classList.remove('hidden'); output.innerHTML = '';
             let logs = [];
-            if(type==='truth'){ title.innerText="CLAUDE_AGENT_INIT"; logs=["Establishing PubMed API connection...", "Ingesting clinical claim...", "Cross-verifying source data...", "VERIFIED: 99.4% Confidence Score."]; }
-            else if(type==='med'){ title.innerText="GEMINI_PREDICT_INIT"; logs=["Querying Supabase vector store...", "Running Random Forest model...", "Pattern identified: High antibiotic resistance.", "Recommendation logged."]; }
-            else if(type==='yt'){ title.innerText="GPT_RENDER_INIT"; logs=["Generating script...", "Syncing ElevenLabs voice...", "Rendering video assets...", "UPLOAD READY."]; }
+            if(type==='truth'){ title.innerText="CLAUDE_AGENT_INIT"; logs=["Establishing connection to PubMed API...", "Ingesting clinical claim...", "Cross-verifying source data...", "VERIFIED: 99.4% Confidence."]; }
+            else if(type==='med'){ title.innerText="GEMINI_PREDICT_INIT"; logs=["Querying Supabase vector store...", "Running Random Forest model...", "Pattern identified: High resistance.", "Recommendation sent."]; }
+            else if(type==='yt'){ title.innerText="GPT_RENDER_INIT"; logs=["Generating script...", "Syncing ElevenLabs voice...", "Rendering assets...", "UPLOAD READY."]; }
             else { title.innerText="TWILIO_SCANNER_INIT"; logs=["Scanning NSE live feed...", "VCP pattern detected.", "Compiling SMS alert...", "SENT to +91 90084 53536"]; }
             
             logs.forEach((log, i) => { setTimeout(() => { output.innerHTML += `<div>> ${log}</div>`; output.scrollTop = output.scrollHeight; }, i * 800); });
