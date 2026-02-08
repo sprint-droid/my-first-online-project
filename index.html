@@ -14,7 +14,7 @@
         
         body { background-color: #020617; color: #f8fafc; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
         
-        /* High-End Glassmorphism */
+        /* Glassmorphism */
         .glass-card { 
             background: rgba(15, 23, 42, 0.6); 
             backdrop-filter: blur(15px); 
@@ -23,12 +23,11 @@
         }
         .glass-card:hover { 
             border-color: #38bdf8; 
-            transform: translateY(-12px) scale(1.02); 
+            transform: translateY(-10px); 
             box-shadow: 0 25px 50px rgba(56, 189, 248, 0.15); 
         }
 
         .neon-glow { text-shadow: 0 0 20px rgba(56, 189, 248, 0.8); }
-        
         #canvas-container { position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100%; opacity: 0.35; }
         
         .interactive-btn { 
@@ -39,16 +38,28 @@
         .interactive-btn:hover { filter: brightness(1.2); letter-spacing: 1.5px; transform: scale(1.05); }
 
         .terminal-bg { background: #000; border-radius: 12px; font-family: 'Courier New', monospace; padding: 20px; color: #10b981; }
-        
-        /* Experience Timeline Glow */
-        .timeline-glow { box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+
+        /* Alternating Timeline Logic */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: rgba(56, 189, 248, 0.2);
+            z-index: -1;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item::before { left: 20px; }
+        }
     </style>
 </head>
 <body>
 
     <div id="canvas-container"></div>
 
-    <nav class="p-6 flex justify-between items-center fixed w-full z-50 backdrop-blur-xl border-b border-white/5">
+    <nav class="p-6 flex justify-between items-center fixed w-full z-[100] backdrop-blur-xl border-b border-white/5">
         <div class="text-2xl font-bold tracking-tighter neon-glow">HARSHA<span class="text-sky-400">.AI</span></div>
         <div class="space-x-8 hidden md:flex font-medium items-center">
             <a href="#about" class="hover:text-sky-400 transition">About</a>
@@ -58,9 +69,9 @@
         </div>
     </nav>
 
-    <section id="about" class="h-screen flex flex-col justify-center items-center px-6 text-center">
+    <section id="about" class="min-h-screen flex flex-col justify-center items-center px-6 text-center pt-32 md:pt-40">
         <div class="animate__animated animate__zoomIn">
-            <div class="w-48 h-48 mx-auto mb-10 rounded-full border-4 border-sky-500/50 p-1 relative shadow-[0_0_50px_rgba(56,189,248,0.3)]">
+            <div class="w-48 h-48 mx-auto mb-10 rounded-full border-4 border-sky-500/50 p-1 relative shadow-[0_0_50px_rgba(56,189,248,0.3)] z-10">
                 <div class="w-full h-full rounded-full overflow-hidden">
                     <img src="https://media.licdn.com/dms/image/v2/D4D03AQEG6wJytpgfkg/profile-displayphoto-scale_400_400/B4DZw8fNatGgAk-/0/1770541346987?e=1772064000&v=beta&t=HdoSHWOwuppUI6CVqg9o0qeC4y1iED5byR1Nfx7Gu98" alt="Dr. Harsha" class="w-full h-full object-cover">
                 </div>
@@ -71,7 +82,7 @@
             <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter leading-none">AI <span class="text-sky-400 neon-glow">Automation</span><br>Architect</h1>
             <p class="max-w-2xl text-gray-400 text-lg md:text-xl leading-relaxed mx-auto mb-10">
                 Pharm.D & MBA. Orchestrating agentic systems using <strong>Claude, Gemini & GPT</strong>. 
-                Full-stack developer utilizing <strong>Cursor, Supabase & Twilio</strong> for healthcare innovation.
+                Developing high-impact solutions with <strong>Cursor, Supabase & Twilio</strong>.
             </p>
         </div>
     </section>
@@ -84,48 +95,64 @@
         </div>
     </section>
 
-    <section id="experience" class="py-20 px-6 max-w-6xl mx-auto">
-        <h2 class="text-4xl font-bold mb-20 text-center tracking-tight">Professional <span class="text-sky-400">Trajectory</span></h2>
+    <section id="experience" class="py-20 px-6 max-w-7xl mx-auto">
+        <h2 class="text-4xl font-bold mb-20 text-center tracking-tight uppercase tracking-widest">Professional <span class="text-sky-400">Trajectory</span></h2>
         
-        <div class="space-y-12">
-            <div class="glass-card p-8 rounded-[2rem] border-l-8 border-purple-500">
-                <div class="flex flex-col md:flex-row justify-between mb-4">
-                    <h3 class="text-2xl font-bold text-purple-400">AI Consultant & Founder</h3>
-                    <span class="text-gray-500 font-mono italic">Independent | 2024 - Present</span>
-                </div>
-                <ul class="space-y-3 text-gray-300">
-                    <li><i class="fa-solid fa-code text-purple-400 mr-2"></i> <strong>Full-Stack Development:</strong> Architecting AI agents using Supabase backends and Twilio communication pipelines.</li>
-                    <li><i class="fa-solid fa-robot text-purple-400 mr-2"></i> <strong>In-House Tools:</strong> Developed Truth Scanner and YT Automator to streamline medical verification and content generation.</li>
-                </ul>
-            </div>
-
-            <div class="glass-card p-8 rounded-[2rem] border-l-8 border-sky-500">
-                <div class="flex flex-col md:flex-row justify-between mb-4">
-                    <h3 class="text-2xl font-bold text-sky-400">Medical Affairs & AI Architect</h3>
-                    <span class="text-gray-500 font-mono">LifeSignals | Apr 2023 - Present</span>
-                </div>
-                <ul class="space-y-3 text-gray-300">
-                    <li><i class="fa-solid fa-bolt text-sky-400 mr-2"></i> <strong>Automation:</strong> Leveraged Cursor/Python to optimize clinical trial interpretation, increasing data speed by 40%.</li>
-                    <li><i class="fa-solid fa-users text-sky-400 mr-2"></i> <strong>Strategy:</strong> Managing Tier-1 Global KOLs for scientific alignment and GTM product readiness.</li>
-                </ul>
-            </div>
-
-            <div class="glass-card p-8 rounded-[2rem] border-l-8 border-gray-700">
-                <div class="flex flex-col md:flex-row justify-between mb-4">
-                    <h3 class="text-xl font-bold">Medical Science Liaison (MSL)</h3>
-                    <span class="text-gray-500 font-mono">Hetero Labs | 2022 - 2023</span>
-                </div>
-                <p class="text-gray-400">Orchestrated Oncology/Neurology data strategies and KOL mapping to bridge clinical gaps in regional markets.</p>
-            </div>
+        <div class="relative space-y-20">
             
-            <div class="glass-card p-8 rounded-[2rem] border-l-8 border-gray-700 text-gray-400">
-                <h3 class="text-xl font-bold text-white mb-2">Scientific Writer</h3>
-                <p>Authored high-impact clinical manuscripts and regulatory documents for global pharmaceutical clients at Indegene.</p>
+            <div class="flex flex-col md:flex-row justify-end items-center w-full group">
+                <div class="md:w-1/2 md:pl-12">
+                    <div class="glass-card p-8 rounded-[2rem] border-r-8 border-purple-500 animate__animated animate__fadeInRight">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold text-purple-400">AI Consultant & Founder</h3>
+                            <span class="text-gray-500 font-mono italic">2024 - Present</span>
+                        </div>
+                        <ul class="space-y-3 text-gray-300 text-sm">
+                            <li><i class="fa-solid fa-code text-purple-400 mr-2"></i> <strong>Full-Stack Architect:</strong> Building healthcare tools using Supabase backends.</li>
+                            <li><i class="fa-solid fa-robot text-purple-400 mr-2"></i> <strong>Automation:</strong> Deployed YouTube headless pipelines and Fintech scanners.</li>
+                            <li><i class="fa-solid fa-microchip text-purple-400 mr-2"></i> <strong>Stealth Project:</strong> Orchestrating multi-agent clinical verification systems.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
-            <div class="glass-card p-8 rounded-[2rem] border-l-8 border-gray-700 text-gray-400">
-                <h3 class="text-xl font-bold text-white mb-2">Drug Safety Associate</h3>
-                <p>Ensured 100% compliance in pharmacovigilance reporting and adverse event monitoring at Navitas.</p>
+            <div class="flex flex-col md:flex-row justify-start items-center w-full group">
+                <div class="md:w-1/2 md:pr-12">
+                    <div class="glass-card p-8 rounded-[2rem] border-l-8 border-sky-500 animate__animated animate__fadeInLeft">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold text-sky-400">Medical Affairs & AI Architect</h3>
+                            <span class="text-gray-500 font-mono italic">LifeSignals | 2023 - Present</span>
+                        </div>
+                        <ul class="space-y-3 text-gray-300 text-sm">
+                            <li><i class="fa-solid fa-bolt text-sky-400 mr-2"></i> <strong>Efficiency:</strong> Reduced manual trial data interpretation time by 40% via AI.</li>
+                            <li><i class="fa-solid fa-users text-sky-400 mr-2"></i> <strong>KOL Network:</strong> Managing global clinical strategy with Top-Tier experts.</li>
+                            <li><i class="fa-solid fa-flask text-sky-400 mr-2"></i> <strong>Product Strategy:</strong> Bridge between engineering and clinical for GTM readiness.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-end items-center w-full group">
+                <div class="md:w-1/2 md:pl-12">
+                    <div class="glass-card p-8 rounded-[2rem] border-r-8 border-gray-600 animate__animated animate__fadeInRight">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold text-gray-300">Medical Science Liaison (MSL)</h3>
+                            <span class="text-gray-500 font-mono italic">Hetero Labs | 2022 - 2023</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">Orchestrated Oncology/Neurology data strategies. Led scientific advisory boards and mapping for 100+ KOLs.</p>
+                        <p class="text-gray-400 text-sm">Improved regional medical training efficiency and accuracy in data dissemination.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-start items-center w-full group">
+                <div class="md:w-1/2 md:pr-12">
+                    <div class="glass-card p-8 rounded-[2rem] border-l-8 border-gray-600 animate__animated animate__fadeInLeft">
+                        <h3 class="text-xl font-bold text-white mb-2">Scientific Writing & Drug Safety</h3>
+                        <p class="text-gray-400 text-sm italic mb-4">Indegene & Navitas | 2020 - 2022</p>
+                        <p class="text-gray-400 text-sm">Pioneered early automated literature review workflows. Managed pharmacovigilance reports and drug safety compliance for global markets.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -186,7 +213,7 @@
     <div id="contact-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-6 backdrop-blur-2xl">
         <div class="glass-card p-10 rounded-[3rem] max-w-sm w-full text-center relative animate__animated animate__zoomIn">
             <button onclick="toggleContact()" class="absolute top-6 right-8 text-3xl hover:text-red-500">&times;</button>
-            <h2 class="text-3xl font-black mb-10 tracking-tight neon-glow">GET IN TOUCH</h2>
+            <h2 class="text-3xl font-black mb-10 tracking-tight neon-glow text-white">GET IN TOUCH</h2>
             <div class="space-y-6">
                 <a href="tel:+919008453536" class="block p-4 glass-card rounded-2xl hover:bg-emerald-500/10 transition">
                     <i class="fa-solid fa-phone text-emerald-400 mr-2"></i> +91 90084 53536
@@ -201,15 +228,14 @@
     <div id="sim-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/90">
         <div class="w-full max-w-2xl terminal-bg h-96 overflow-hidden flex flex-col">
             <div class="flex justify-between items-center mb-4 border-b border-green-500/30 pb-2">
-                <span id="sim-title" class="font-bold text-xs">AGENT_SYSTEM_INIT</span>
+                <span id="sim-title" class="font-bold text-xs text-white">AGENT_SYSTEM_INIT</span>
                 <button onclick="document.getElementById('sim-modal').classList.add('hidden')" class="text-red-500">CLOSE</button>
             </div>
-            <div id="sim-output" class="flex-1 overflow-y-auto space-y-2 text-sm"></div>
+            <div id="sim-output" class="flex-1 overflow-y-auto space-y-2 text-sm text-green-500"></div>
         </div>
     </div>
 
     <script>
-        // Smooth Canvas Background logic
         const container = document.getElementById('canvas-container');
         const canvas = document.createElement('canvas');
         container.appendChild(canvas);
@@ -233,9 +259,9 @@
             const title = document.getElementById('sim-title');
             modal.classList.remove('hidden'); output.innerHTML = '';
             let logs = [];
-            if(type==='truth'){ title.innerText="CLAUDE_AGENT_INIT"; logs=["Establishing connection to PubMed API...", "Ingesting clinical claim...", "Cross-verifying source data...", "VERIFIED: 99.4% Confidence."]; }
-            else if(type==='med'){ title.innerText="GEMINI_PREDICT_INIT"; logs=["Querying Supabase vector store...", "Running Random Forest model...", "Pattern identified: High resistance.", "Recommendation sent."]; }
-            else if(type==='yt'){ title.innerText="GPT_RENDER_INIT"; logs=["Generating script...", "Syncing ElevenLabs voice...", "Rendering assets...", "UPLOAD READY."]; }
+            if(type==='truth'){ title.innerText="CLAUDE_AGENT_INIT"; logs=["Establishing PubMed API connection...", "Ingesting clinical claim...", "Cross-verifying source data...", "VERIFIED: 99.4% Confidence Score."]; }
+            else if(type==='med'){ title.innerText="GEMINI_PREDICT_INIT"; logs=["Querying Supabase vector store...", "Running Random Forest model...", "Pattern identified: High antibiotic resistance.", "Recommendation logged."]; }
+            else if(type==='yt'){ title.innerText="GPT_RENDER_INIT"; logs=["Generating script...", "Syncing ElevenLabs voice...", "Rendering video assets...", "UPLOAD READY."]; }
             else { title.innerText="TWILIO_SCANNER_INIT"; logs=["Scanning NSE live feed...", "VCP pattern detected.", "Compiling SMS alert...", "SENT to +91 90084 53536"]; }
             
             logs.forEach((log, i) => { setTimeout(() => { output.innerHTML += `<div>> ${log}</div>`; output.scrollTop = output.scrollHeight; }, i * 800); });
