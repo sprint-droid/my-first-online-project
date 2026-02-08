@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Alla Harshavardhan Reddy | AI Automation Architect</title>
+    <title>Dr. Harsha | AI Automation Architect</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -11,17 +11,44 @@
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+        
         body { background-color: #020617; color: #f8fafc; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
-        .glass-card { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(15px); border: 1px solid rgba(56, 189, 248, 0.2); transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-        .glass-card:hover { border-color: #38bdf8; transform: translateY(-10px); box-shadow: 0 25px 50px rgba(56, 189, 248, 0.15); }
+        
+        /* High-End Glassmorphism */
+        .glass-card { 
+            background: rgba(15, 23, 42, 0.6); 
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(56, 189, 248, 0.2); 
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        .glass-card:hover { 
+            border-color: #38bdf8; 
+            transform: translateY(-10px); 
+            box-shadow: 0 25px 50px rgba(56, 189, 248, 0.15); 
+        }
+
         .neon-glow { text-shadow: 0 0 20px rgba(56, 189, 248, 0.8); }
         #canvas-container { position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100%; opacity: 0.35; }
-        .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; }
+        
+        /* Professional Timeline */
+        .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; padding-bottom: 50px; }
         .timeline-line { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: rgba(56, 189, 248, 0.2); }
-        .timeline-dot { position: absolute; left: 50%; transform: translate(-50%, 20px); width: 44px; height: 44px; background: #0f172a; border: 2px solid #38bdf8; border-radius: 50%; z-index: 10; display: flex; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
-        @media (max-width: 768px) { .timeline-line { left: 20px; transform: none; } .timeline-dot { left: 20px; transform: translate(-50%, 20px); } }
+        
+        .timeline-dot { 
+            position: absolute; left: 50%; transform: translate(-50%, 20px); 
+            width: 50px; height: 50px; background: #0f172a; border: 2px solid #38bdf8;
+            border-radius: 50%; z-index: 10; display: flex; items-center: center; justify-content: center;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line { left: 20px; transform: none; }
+            .timeline-dot { left: 20px; transform: translate(-50%, 20px); }
+        }
+
         .interactive-btn { background: linear-gradient(90deg, #0ea5e9, #2563eb); transition: 0.4s; }
         .interactive-btn:hover { filter: brightness(1.2); letter-spacing: 1.5px; transform: scale(1.05); }
+
         .terminal-bg { background: #000; border-radius: 12px; font-family: 'Courier New', monospace; padding: 20px; color: #10b981; }
     </style>
 </head>
@@ -31,12 +58,12 @@
 
     <nav class="p-6 flex justify-between items-center fixed w-full z-[100] backdrop-blur-xl border-b border-white/5">
         <div class="text-2xl font-bold tracking-tighter neon-glow">DR. HARSHA<span class="text-sky-400">.AI</span></div>
-        <div class="space-x-8 hidden md:flex font-medium items-center text-sm">
+        <div class="space-x-8 hidden md:flex font-medium items-center">
             <a href="#about" class="hover:text-sky-400 transition">About</a>
             <a href="#experience" class="hover:text-sky-400 transition">Trajectory</a>
             <a href="#projects" class="hover:text-sky-400 transition">AI Tools</a>
-            <a href="https://linkedin.com/in/dr-harshavardhan-reddy-7441a9219/" target="_blank" class="hover:text-sky-400 transition"><i class="fa-brands fa-linkedin text-xl"></i></a>
-            <button onclick="toggleContact()" class="interactive-btn px-6 py-2 rounded-full text-white font-bold">Contact Now</button>
+            <a href="https://linkedin.com/in/dr-harshavardhan-reddy-7441a9219/" target="_blank" class="hover:text-sky-400 transition text-xl"><i class="fa-brands fa-linkedin"></i></a>
+            <button onclick="toggleContact()" class="interactive-btn px-8 py-2 rounded-full text-white font-bold">Contact Now</button>
         </div>
     </nav>
 
@@ -49,12 +76,11 @@
                 <div class="absolute bottom-4 right-4 w-10 h-10 bg-emerald-500 rounded-full border-4 border-slate-900 animate-pulse"></div>
             </div>
 
-            <div class="inline-block px-4 py-1 border border-sky-500/30 rounded-full bg-sky-500/10 text-sky-400 text-xs font-bold mb-4 tracking-[0.3em] uppercase">Make It Happen</div>
-            <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tighter text-white">ALLA HARSHAVARDHAN REDDY</h1>
-            <h2 class="text-3xl md:text-5xl font-bold mb-6 tracking-tight text-sky-400 neon-glow">AI Automation Architect</h2>
+            <div class="inline-block px-4 py-1 border border-sky-500/30 rounded-full bg-sky-500/10 text-sky-400 text-xs font-bold mb-8 tracking-[0.3em] uppercase">Make It Happen</div>
+            <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter leading-none">AI <span class="text-sky-400 neon-glow">Automation</span><br>Architect</h1>
             <p class="max-w-2xl text-gray-400 text-lg md:text-xl leading-relaxed mx-auto mb-10">
                 Pharm.D & MBA. Orchestrating agentic systems using <strong>Claude, Gemini & GPT</strong>. 
-                Full-stack engineering with <strong>Cursor, Supabase & Twilio</strong> for health-tech innovation.
+                Full-stack developer utilizing <strong>Cursor, Supabase & Twilio</strong> for healthcare innovation.
             </p>
         </div>
     </section>
@@ -63,12 +89,12 @@
         <div class="grid md:grid-cols-2 gap-8">
             <div class="glass-card p-10 rounded-[2.5rem] border-dashed border-sky-500/40 border-2">
                 <h3 class="text-xl font-bold mb-3 text-sky-400">Collaborative Tech Talent 🚀</h3>
-                <p class="text-gray-400 text-sm mb-6">Seeking technical partners and co-founders to scale disruptive AI-driven healthcare ventures.</p>
+                <p class="text-gray-400 text-sm mb-6">Seeking technical partners and co-founders to scale disruptive AI-driven healthcare and fintech ventures.</p>
                 <button onclick="toggleContact()" class="text-sky-400 font-bold hover:underline">Connect for Partnership →</button>
             </div>
-            <div class="glass-card p-10 rounded-[2.5rem] border-dashed border-emerald-500/40 border-2 text-center">
+            <div class="glass-card p-10 rounded-[2.5rem] border-dashed border-emerald-500/40 border-2">
                 <h3 class="text-xl font-bold mb-3 text-emerald-400">Investor Opportunities 💎</h3>
-                <p class="text-gray-400 text-sm mb-6">Enable the next generation of AI-enabled health-tech solutions. Let's build the future.</p>
+                <p class="text-gray-400 text-sm mb-6">Actively looking for forward-thinking investors to enable the next generation of AI-enabled health-tech solutions.</p>
                 <button onclick="toggleContact()" class="text-emerald-400 font-bold hover:underline">Discuss Investment →</button>
             </div>
         </div>
@@ -80,68 +106,70 @@
         <div class="timeline-container">
             <div class="timeline-line"></div>
 
-            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-16">
+            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-24">
                 <div class="timeline-dot"><i class="fa-solid fa-code text-sky-400 m-auto"></i></div>
                 <div class="hidden md:block w-1/2"></div>
                 <div class="w-full md:w-[45%] md:pl-8">
-                    <div class="glass-card p-6 rounded-[2rem] border-l-4 border-purple-500">
-                        <h3 class="text-xl font-bold text-purple-400">AI Consultant & Founder</h3>
-                        <p class="text-gray-500 font-mono italic mb-3 text-xs">Independent | 2024 - Present</p>
-                        <ul class="space-y-1 text-gray-300 text-xs">
+                    <div class="glass-card p-8 rounded-[2rem] border-l-4 border-purple-500">
+                        <h3 class="text-2xl font-bold text-purple-400">AI Consultant & Founder</h3>
+                        <p class="text-gray-500 font-mono italic mb-4">Independent | 2024 - Present</p>
+                        <ul class="space-y-2 text-gray-300 text-sm">
                             <li><i class="fa-solid fa-check text-purple-500 mr-2"></i> Building full-stack AI tools with Supabase.</li>
                             <li><i class="fa-solid fa-check text-purple-500 mr-2"></i> Deployed YT Automation & Fintech scanners.</li>
+                            <li><i class="fa-solid fa-check text-purple-500 mr-2"></i> Architecting agentic clinical verification systems.</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-16">
+            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-24">
                 <div class="timeline-dot"><i class="fa-solid fa-heart-pulse text-sky-400 m-auto"></i></div>
                 <div class="w-full md:w-[45%] md:pr-8 text-right order-2 md:order-1">
-                    <div class="glass-card p-6 rounded-[2rem] border-r-4 border-sky-500">
-                        <h3 class="text-xl font-bold text-sky-400">Medical Affairs & AI Architect</h3>
-                        <p class="text-gray-500 font-mono italic mb-3 text-xs">LifeSignals | 2023 - Present</p>
-                        <ul class="space-y-1 text-gray-300 text-xs">
+                    <div class="glass-card p-8 rounded-[2rem] border-r-4 border-sky-500">
+                        <h3 class="text-2xl font-bold text-sky-400">Medical Affairs & AI Architect</h3>
+                        <p class="text-gray-500 font-mono italic mb-4">LifeSignals | 2023 - Present</p>
+                        <ul class="space-y-2 text-gray-300 text-sm">
                             <li>40% faster trial data interpretation via AI. <i class="fa-solid fa-check text-sky-500 ml-2"></i></li>
                             <li>Managing Global KOLs for scientific alignment. <i class="fa-solid fa-check text-sky-500 ml-2"></i></li>
+                            <li>Strategic bridge between engineering & clinical. <i class="fa-solid fa-check text-sky-500 ml-2"></i></li>
                         </ul>
                     </div>
                 </div>
                 <div class="hidden md:block w-1/2 order-1 md:order-2"></div>
             </div>
 
-            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-16">
+            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-24">
                 <div class="timeline-dot"><i class="fa-solid fa-dna text-sky-400 m-auto"></i></div>
                 <div class="hidden md:block w-1/2"></div>
                 <div class="w-full md:w-[45%] md:pl-8">
-                    <div class="glass-card p-6 rounded-[2rem] border-l-4 border-emerald-500">
-                        <h3 class="text-xl font-bold text-emerald-500">Medical Science Liaison (MSL)</h3>
-                        <p class="text-gray-500 font-mono italic mb-3 text-xs">Hetero Labs | 2022 - 2023</p>
-                        <p class="text-gray-400 text-xs">Orchestrated Oncology data strategies and mapping for 100+ KOLs.</p>
+                    <div class="glass-card p-8 rounded-[2rem] border-l-4 border-emerald-500">
+                        <h3 class="text-2xl font-bold text-emerald-500">Medical Science Liaison (MSL)</h3>
+                        <p class="text-gray-500 font-mono italic mb-4">Hetero Labs | 2022 - 2023</p>
+                        <p class="text-gray-400 text-sm">Orchestrated Oncology data strategies. Identified key clinical gaps and managed mapping for 100+ KOLs.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-16">
+            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-24">
                 <div class="timeline-dot"><i class="fa-solid fa-file-medical text-sky-400 m-auto"></i></div>
                 <div class="w-full md:w-[45%] md:pr-8 text-right order-2 md:order-1">
-                    <div class="glass-card p-6 rounded-[2rem] border-r-4 border-gray-600">
-                        <h3 class="text-lg font-bold text-white mb-2">Scientific Writer</h3>
-                        <p class="text-gray-500 font-mono italic mb-3 text-xs">Indegene | 2020 - 2022</p>
-                        <p class="text-gray-400 text-xs">Authored high-impact clinical manuscripts for Big Pharma.</p>
+                    <div class="glass-card p-8 rounded-[2rem] border-r-4 border-gray-600">
+                        <h3 class="text-xl font-bold text-white mb-2">Scientific Writer</h3>
+                        <p class="text-gray-500 font-mono italic mb-4">Indegene | 2020 - 2022</p>
+                        <p class="text-gray-400 text-sm">Automated literature review workflows and managed pharmacovigilance reports with 100% safety compliance.</p>
                     </div>
                 </div>
                 <div class="hidden md:block w-1/2 order-1 md:order-2"></div>
             </div>
 
-            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-16">
+            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-24">
                 <div class="timeline-dot"><i class="fa-solid fa-shield-virus text-sky-400 m-auto"></i></div>
                 <div class="hidden md:block w-1/2"></div>
                 <div class="w-full md:w-[45%] md:pl-8">
-                    <div class="glass-card p-6 rounded-[2rem] border-l-4 border-gray-600">
-                        <h3 class="text-lg font-bold text-white mb-2">Drug Safety Associate</h3>
-                        <p class="text-gray-500 font-mono italic mb-3 text-xs">Navitas Life Sciences | 2020</p>
-                        <p class="text-gray-400 text-xs">Ensured pharmacovigilance compliance and adverse event monitoring.</p>
+                    <div class="glass-card p-8 rounded-[2rem] border-l-4 border-gray-600">
+                        <h3 class="text-xl font-bold text-white mb-2">Drug Safety Associate</h3>
+                        <p class="text-gray-500 font-mono italic mb-4">Navitas | 2020</p>
+                        <p class="text-gray-400 text-sm">Ensured pharmacovigilance compliance and managed adverse event monitoring for international markets.</p>
                     </div>
                 </div>
             </div>
@@ -150,31 +178,42 @@
 
     <section id="projects" class="py-32 px-6 max-w-7xl mx-auto">
         <h2 class="text-4xl font-bold mb-16 text-center tracking-tighter">Live <span class="text-sky-400">AI Deployments</span></h2>
+        
         <div class="grid lg:grid-cols-4 gap-8">
-            <div class="glass-card p-8 rounded-[2rem] flex flex-col justify-between">
-                <div><i class="fa-solid fa-user-check text-sky-400 text-3xl mb-4"></i><h3 class="font-bold mb-2">Truth Scanner</h3></div>
-                <button onclick="simulate('truth')" class="py-2 rounded-xl border border-sky-500/30 text-sky-400 hover:bg-sky-500 transition">Launch</button>
+            <div class="glass-card p-8 rounded-[2rem] flex flex-col justify-between text-center">
+                <i class="fa-solid fa-user-check text-sky-400 text-3xl mb-6"></i>
+                <h3 class="text-xl font-bold mb-2">Truth Scanner</h3>
+                <button onclick="simulate('truth')" class="py-2 rounded-xl border border-sky-500/30 text-sky-400 hover:bg-sky-500 hover:text-white transition">Launch</button>
             </div>
-            <div class="glass-card p-8 rounded-[2rem] flex flex-col justify-between">
-                <div><i class="fa-solid fa-notes-medical text-emerald-400 text-3xl mb-4"></i><h3 class="font-bold mb-2">MedData-AI</h3></div>
-                <button onclick="simulate('med')" class="py-2 rounded-xl border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500 transition">Analyze</button>
+            <div class="glass-card p-8 rounded-[2rem] flex flex-col justify-between text-center">
+                <i class="fa-solid fa-notes-medical text-emerald-400 text-3xl mb-6"></i>
+                <h3 class="text-xl font-bold mb-2">MedData-AI</h3>
+                <button onclick="simulate('med')" class="py-2 rounded-xl border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500 hover:text-white transition">Analyze</button>
             </div>
-            <div class="glass-card p-8 rounded-[2rem] flex flex-col justify-between">
-                <div><i class="fa-brands fa-youtube text-red-500 text-3xl mb-4"></i><h3 class="font-bold mb-2">YT Automator</h3></div>
-                <button onclick="simulate('yt')" class="py-2 rounded-xl border border-red-500/30 text-red-500 hover:bg-red-500 transition">Render</button>
+            <div class="glass-card p-8 rounded-[2rem] flex flex-col justify-between text-center">
+                <i class="fa-brands fa-youtube text-red-500 text-3xl mb-6"></i>
+                <h3 class="text-xl font-bold mb-2">YT Automator</h3>
+                <button onclick="simulate('yt')" class="py-2 rounded-xl border border-red-500/30 text-red-500 hover:bg-red-500 hover:text-white transition">Render</button>
             </div>
-            <div class="glass-card p-8 rounded-[2rem] flex flex-col justify-between">
-                <div><i class="fa-solid fa-chart-line text-purple-400 text-3xl mb-4"></i><h3 class="font-bold mb-2">TradeVCP</h3></div>
-                <button onclick="simulate('trade')" class="py-2 rounded-xl border border-purple-500/30 text-purple-400 hover:bg-purple-600 transition">Scan</button>
+            <div class="glass-card p-8 rounded-[2rem] flex flex-col justify-between text-center">
+                <i class="fa-solid fa-chart-line text-purple-400 text-3xl mb-6"></i>
+                <h3 class="text-xl font-bold mb-2">TradeVCP</h3>
+                <button onclick="simulate('trade')" class="py-2 rounded-xl border border-purple-500/30 text-purple-400 hover:bg-purple-600 hover:text-white transition">Scan</button>
             </div>
         </div>
     </section>
 
     <section class="py-20 px-6 max-w-5xl mx-auto mb-20">
-        <h2 class="text-3xl font-bold mb-12 text-center text-gray-500 uppercase tracking-widest">Future Roadmap</h2>
+        <h2 class="text-3xl font-bold mb-12 text-center text-gray-500 uppercase tracking-[0.4em]">Future Roadmap</h2>
         <div class="grid md:grid-cols-2 gap-8">
-            <div class="glass-card p-8 rounded-[2rem] border-t-4 border-blue-500"><h4 class="font-bold text-xl mb-2">Health Passport</h4><p class="text-gray-400 text-sm">QR-based medical record interoperability.</p></div>
-            <div class="glass-card p-8 rounded-[2rem] border-t-4 border-pink-500"><h4 class="font-bold text-xl mb-2">Home Care AI</h4><p class="text-gray-400 text-sm">Intelligent home monitoring agents.</p></div>
+            <div class="glass-card p-8 rounded-[2rem] border-t-4 border-blue-500">
+                <h4 class="font-bold text-xl mb-3"><i class="fa-solid fa-qrcode mr-2"></i> Universal Health Passport</h4>
+                <p class="text-gray-400 text-sm">QR-based medical records allowing seamless data transfer across healthcare providers.</p>
+            </div>
+            <div class="glass-card p-8 rounded-[2rem] border-t-4 border-pink-500">
+                <h4 class="font-bold text-xl mb-3"><i class="fa-solid fa-house-medical mr-2"></i> Home Care AI</h4>
+                <p class="text-gray-400 text-sm">Intelligent home monitoring agents for elderly care and chronic disease management.</p>
+            </div>
         </div>
     </section>
 
@@ -197,8 +236,11 @@
     </div>
 
     <div id="sim-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center p-4 bg-black/90">
-        <div class="w-full max-w-2xl terminal-bg h-96 flex flex-col">
-            <div class="flex justify-between items-center mb-4 border-b border-green-500/30 pb-2"><span id="sim-title" class="text-white text-xs">AGENT_SYSTEM_INIT</span><button onclick="document.getElementById('sim-modal').classList.add('hidden')" class="text-red-500">CLOSE</button></div>
+        <div class="w-full max-w-2xl terminal-bg h-96 overflow-hidden flex flex-col">
+            <div class="flex justify-between items-center mb-4 border-b border-green-500/30 pb-2">
+                <span id="sim-title" class="text-xs font-bold text-white">AGENT_SYSTEM_INIT</span>
+                <button onclick="document.getElementById('sim-modal').classList.add('hidden')" class="text-red-500">CLOSE</button>
+            </div>
             <div id="sim-output" class="flex-1 overflow-y-auto space-y-2 text-sm text-green-500"></div>
         </div>
     </div>
@@ -207,8 +249,9 @@
         <div class="flex justify-center gap-6 mb-8">
             <a href="https://linkedin.com/in/dr-harshavardhan-reddy-7441a9219/" target="_blank" class="text-2xl hover:text-sky-400 transition text-white"><i class="fa-brands fa-linkedin"></i></a>
             <a href="mailto:reddy.harsha183@gmail.com" class="text-2xl hover:text-sky-400 transition text-white"><i class="fa-solid fa-envelope"></i></a>
+            <a href="tel:+919008453536" class="text-2xl hover:text-emerald-400 transition text-white"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
-        <p class="text-slate-500 text-sm mb-2">© 2026 Dr. Alla Harshavardhan Reddy. All Rights Reserved.</p>
+        <p class="text-slate-500 text-sm mb-2">© 2026 Dr. Harsha. All Rights Reserved.</p>
         <p class="text-slate-600 text-xs tracking-widest uppercase">Built with AI-Augmented Engineering</p>
     </footer>
 
