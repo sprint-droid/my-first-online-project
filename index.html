@@ -1,274 +1,1074 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Harsha | AI Architect & Founder</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harsha Reddy — Forward Deployed Engineer & AI Product Owner</title>
+    <meta name="description" content="Forward Deployed Engineer and AI Product Owner specializing in Applied AI, Agentic Systems, and Enterprise AI Deployment." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
-        
-        body { background-color: #020617; color: #f8fafc; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
-        
-        .glass-card { 
-            background: rgba(15, 23, 42, 0.6); 
-            backdrop-filter: blur(15px); 
-            border: 1px solid rgba(56, 189, 248, 0.2); 
-            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
-        }
-        .glass-card:hover { 
-            border-color: #38bdf8; 
-            transform: translateY(-10px); 
-            box-shadow: 0 25px 50px rgba(56, 189, 248, 0.15); 
-        }
-
-        .neon-glow { text-shadow: 0 0 20px rgba(56, 189, 248, 0.8); }
-        #canvas-container { position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100%; opacity: 0.35; }
-        
-        .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; padding-bottom: 50px; }
-        .timeline-line { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: rgba(56, 189, 248, 0.2); }
-        
-        .timeline-dot { 
-            position: absolute; left: 50%; transform: translate(-50%, 20px); 
-            width: 50px; height: 50px; background: #0f172a; border: 2px solid #38bdf8;
-            border-radius: 50%; z-index: 10; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #111118;
+            --bg-card: rgba(20, 20, 35, 0.70);
+            --text-primary: #f0f0f5;
+            --text-secondary: #b0b0c8;
+            --text-muted: #70708a;
+            --accent-1: #6c5ce7;
+            --accent-2: #00d4ff;
+            --accent-3: #a855f7;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --shadow-glow: 0 0 60px rgba(108, 92, 231, 0.15);
+            --radius: 16px;
         }
 
-        @media (max-width: 768px) {
-            .timeline-line { left: 20px; transform: none; }
-            .timeline-dot { left: 20px; transform: translate(-50%, 20px); }
+        /* ===== RESET ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+        ::selection { background: var(--accent-1); color: #fff; }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-1); border-radius: 10px; }
+
+        /* ===== LOADING ===== */
+        #loader {
+            position: fixed; inset: 0; z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: var(--bg-primary);
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        #loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        #loader .initials {
+            font-size: 4rem; font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: pulseLoad 1.4s ease-in-out infinite;
+        }
+        #loader .bar {
+            margin-top: 24px; width: 140px; height: 3px;
+            background: rgba(255,255,255,0.08); border-radius: 10px; overflow: hidden;
+        }
+        #loader .bar::after {
+            content: ''; display: block; height: 100%; width: 40%;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+            animation: loadBar 1.2s ease-in-out infinite;
+        }
+        @keyframes pulseLoad { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.04); opacity: 0.7; } }
+        @keyframes loadBar { 0% { transform: translateX(-100%); } 100% { transform: translateX(350%); } }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 18px 32px; display: flex; align-items: center; justify-content: space-between;
+            background: rgba(10,10,15,0.60); backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: background 0.4s, padding 0.3s;
+        }
+        nav.scrolled { background: rgba(10,10,15,0.85); backdrop-filter: blur(24px); padding: 12px 32px; }
+        nav .logo { font-weight: 700; font-size: 1.3rem; background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        nav .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+        nav .nav-links a {
+            font-size: 0.85rem; font-weight: 500; color: var(--text-secondary);
+            transition: color 0.3s; position: relative;
+        }
+        nav .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: var(--accent-2); transition: width 0.3s;
+        }
+        nav .nav-links a:hover, nav .nav-links a.active { color: #fff; }
+        nav .nav-links a:hover::after, nav .nav-links a.active::after { width: 100%; }
+        .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+        .nav-toggle span { display: block; width: 26px; height: 2px; background: var(--text-primary); border-radius: 4px; transition: 0.3s; }
+        .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .nav-toggle.active span:nth-child(2) { opacity: 0; }
+        .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        @media (max-width: 820px) {
+            nav { padding: 14px 20px; }
+            nav .nav-links {
+                position: fixed; top: 0; right: -100%; width: 70%; max-width: 320px; height: 100vh;
+                flex-direction: column; justify-content: center; gap: 24px;
+                background: rgba(10,10,15,0.96); backdrop-filter: blur(30px); padding: 40px 32px;
+                transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                border-left: 1px solid var(--glass-border);
+            }
+            nav .nav-links.open { right: 0; }
+            nav .nav-links a { font-size: 1.1rem; }
+            .nav-toggle { display: flex; z-index: 1001; }
         }
 
-        .interactive-btn { background: linear-gradient(90deg, #0ea5e9, #2563eb); transition: 0.4s; }
-        .interactive-btn:hover { filter: brightness(1.2); letter-spacing: 1.5px; transform: scale(1.05); }
+        /* ===== HERO ===== */
+        #hero {
+            position: relative; min-height: 100vh; display: flex; align-items: center;
+            padding: 120px 32px 80px; overflow: hidden;
+        }
+        #hero #three-canvas { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+        #hero .hero-content { position: relative; z-index: 2; max-width: 820px; }
+        #hero .hero-badge {
+            display: inline-block; padding: 6px 18px; border-radius: 100px;
+            font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+            background: rgba(108,92,231,0.18); border: 1px solid rgba(108,92,231,0.25);
+            color: var(--accent-2); margin-bottom: 24px;
+            animation: fadeUp 1s ease 0.2s both;
+        }
+        #hero h1 {
+            font-size: clamp(2.8rem, 8vw, 5.2rem); font-weight: 800; line-height: 1.05;
+            margin-bottom: 16px; animation: fadeUp 1s ease 0.4s both;
+        }
+        #hero h1 .highlight { background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        #hero .subtitle {
+            font-size: clamp(1.05rem, 1.6vw, 1.35rem); color: var(--text-secondary);
+            margin-bottom: 12px; animation: fadeUp 1s ease 0.6s both;
+        }
+        #hero .tagline {
+            font-size: 0.95rem; color: var(--text-muted); max-width: 560px;
+            margin-bottom: 36px; animation: fadeUp 1s ease 0.8s both;
+        }
+        #hero .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; animation: fadeUp 1s ease 1s both; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px; padding: 14px 30px;
+            border-radius: 60px; font-weight: 600; font-size: 0.9rem; border: none;
+            cursor: pointer; transition: all 0.3s; background: transparent; color: #fff;
+        }
+        .btn-primary { background: linear-gradient(135deg, var(--accent-1), var(--accent-3)); box-shadow: 0 4px 30px rgba(108,92,231,0.3); }
+        .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 50px rgba(108,92,231,0.45); }
+        .btn-secondary { border: 1.5px solid rgba(255,255,255,0.15); backdrop-filter: blur(4px); }
+        .btn-secondary:hover { border-color: var(--accent-2); background: rgba(0,212,255,0.06); transform: translateY(-3px); }
+        .btn-outline { border: 1.5px solid rgba(255,255,255,0.10); }
+        .btn-outline:hover { border-color: var(--accent-1); background: rgba(108,92,231,0.08); transform: translateY(-3px); }
+        @keyframes fadeUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
 
-        .terminal-bg { background: #000; border-radius: 12px; font-family: 'Courier New', monospace; padding: 20px; color: #10b981; }
+        /* ===== SECTIONS ===== */
+        section { padding: 80px 32px; position: relative; }
+        .section-container { max-width: 1200px; margin: 0 auto; }
+        .section-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-2); margin-bottom: 8px; }
+        .section-title { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; margin-bottom: 16px; }
+        .section-desc { color: var(--text-secondary); max-width: 600px; margin-bottom: 48px; font-size: 1.05rem; }
+        .reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ===== ABOUT ===== */
+        #about { background: var(--bg-secondary); }
+        #about .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+        #about .about-text p { color: var(--text-secondary); font-size: 1.02rem; margin-bottom: 18px; max-width: 540px; }
+        #about .about-text p strong { color: #fff; }
+        #about .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; width: 100%; }
+        #about .stat-card {
+            background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius);
+            padding: 24px 18px; text-align: center; backdrop-filter: blur(8px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        #about .stat-card:hover { transform: translateY(-6px); border-color: rgba(108,92,231,0.3); }
+        #about .stat-card .number { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        #about .stat-card .label { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+        @media (max-width: 820px) { #about .about-grid { grid-template-columns: 1fr; gap: 32px; } #about .stats { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 500px) { #about .stats { grid-template-columns: 1fr 1fr; } }
+
+        /* ===== SKILLS ===== */
+        #skills { background: var(--bg-primary); }
+        #skills .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+        #skills .skill-group {
+            background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius);
+            padding: 24px 22px; backdrop-filter: blur(8px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        #skills .skill-group:hover { transform: translateY(-4px); border-color: rgba(108,92,231,0.25); }
+        #skills .skill-group h4 { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--accent-2); margin-bottom: 12px; }
+        #skills .skill-group .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        #skills .skill-group .tags span {
+            font-size: 0.75rem; padding: 4px 14px; border-radius: 100px;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06);
+            color: var(--text-secondary); transition: all 0.25s;
+        }
+        #skills .skill-group .tags span:hover { background: rgba(108,92,231,0.15); border-color: rgba(108,92,231,0.3); color: #fff; }
+
+        /* ===== EXPERIENCE ===== */
+        #experience { background: var(--bg-secondary); }
+        #experience .timeline { display: flex; flex-direction: column; gap: 28px; }
+        #experience .exp-item {
+            display: grid; grid-template-columns: 1fr 2fr; gap: 24px;
+            padding: 28px 32px; background: var(--bg-card); border: 1px solid var(--glass-border);
+            border-radius: var(--radius); backdrop-filter: blur(8px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        #experience .exp-item:hover { transform: translateX(6px); border-color: rgba(108,92,231,0.2); }
+        #experience .exp-item .left .company { font-weight: 600; font-size: 1.1rem; }
+        #experience .exp-item .left .role { font-size: 0.85rem; color: var(--accent-2); font-weight: 500; }
+        #experience .exp-item .left .dates { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+        #experience .exp-item .right ul { list-style: none; padding: 0; }
+        #experience .exp-item .right ul li { color: var(--text-secondary); font-size: 0.92rem; padding: 4px 0; padding-left: 20px; position: relative; }
+        #experience .exp-item .right ul li::before { content: '▹'; position: absolute; left: 0; color: var(--accent-2); }
+        @media (max-width: 700px) { #experience .exp-item { grid-template-columns: 1fr; gap: 12px; padding: 20px; } }
+
+        /* ===== PROJECTS ===== */
+        #projects { background: var(--bg-primary); }
+        #projects .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+        #projects .project-card {
+            background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius);
+            padding: 28px 26px; backdrop-filter: blur(8px);
+            transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
+            position: relative; overflow: hidden;
+        }
+        #projects .project-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+            opacity: 0; transition: opacity 0.4s;
+        }
+        #projects .project-card:hover::before { opacity: 1; }
+        #projects .project-card:hover { transform: translateY(-8px); border-color: rgba(108,92,231,0.25); box-shadow: var(--shadow-glow); }
+        #projects .project-card .name { font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; }
+        #projects .project-card .desc { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 14px; }
+        #projects .project-card .techs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+        #projects .project-card .techs span { font-size: 0.65rem; padding: 3px 12px; border-radius: 100px; background: rgba(108,92,231,0.12); border: 1px solid rgba(108,92,231,0.12); color: var(--text-secondary); }
+        #projects .project-card .impact { font-size: 0.85rem; color: var(--accent-2); font-weight: 500; }
+
+        /* ===== LIVE AI DEPLOYMENTS ===== */
+        #deployments { background: var(--bg-secondary); }
+        #deployments .deploy-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
+        #deployments .deploy-card {
+            background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius);
+            padding: 28px 20px; text-align: center; backdrop-filter: blur(8px);
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            display: flex; flex-direction: column; align-items: center; gap: 12px;
+            cursor: pointer; position: relative; overflow: hidden;
+        }
+        #deployments .deploy-card:hover { transform: translateY(-6px); border-color: rgba(0,212,255,0.25); box-shadow: var(--shadow-glow); }
+        #deployments .deploy-card .icon { font-size: 2.8rem; transition: transform 0.4s; }
+        #deployments .deploy-card:hover .icon { transform: scale(1.12) rotate(-4deg); }
+        #deployments .deploy-card .name { font-weight: 700; font-size: 1.05rem; }
+        #deployments .deploy-card .desc-sm { font-size: 0.75rem; color: var(--text-muted); margin-top: -4px; }
+        #deployments .deploy-card .sim-btn {
+            padding: 8px 24px; border-radius: 60px; font-size: 0.75rem; font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04);
+            color: var(--text-secondary); cursor: pointer; transition: all 0.3s;
+        }
+        #deployments .deploy-card .sim-btn:hover { background: var(--accent-2); color: #000; border-color: var(--accent-2); transform: scale(1.04); }
+
+        /* ===== COLLABORATE ===== */
+        #connect { background: var(--bg-primary); }
+        #connect .connect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        #connect .connect-card {
+            background: var(--bg-card); border: 2px dashed rgba(108,92,231,0.3); border-radius: var(--radius);
+            padding: 40px 32px; text-align: center; backdrop-filter: blur(8px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        #connect .connect-card:hover { transform: translateY(-6px); border-color: var(--accent-2); }
+        #connect .connect-card h3 { font-size: 1.3rem; margin-bottom: 8px; }
+        #connect .connect-card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px; }
+        #connect .connect-card .connect-btn { background: none; border: none; color: var(--accent-2); font-weight: 600; cursor: pointer; font-size: 0.95rem; transition: color 0.3s; }
+        #connect .connect-card .connect-btn:hover { color: #fff; text-decoration: underline; }
+        #connect .connect-card .icon-lg { font-size: 2.8rem; margin-bottom: 12px; display: block; }
+        .connect-sky .icon-lg { color: #38bdf8; }
+        .connect-emerald .icon-lg { color: #34d399; }
+        @media (max-width: 700px) { #connect .connect-grid { grid-template-columns: 1fr; } }
+
+        /* ===== ROADMAP ===== */
+        #roadmap { background: var(--bg-secondary); }
+        #roadmap .roadmap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        #roadmap .roadmap-card {
+            background: var(--bg-card); border-top: 4px solid var(--accent-1); border-radius: var(--radius);
+            padding: 32px 28px; backdrop-filter: blur(8px);
+            transition: transform 0.3s, border-color 0.3s; cursor: pointer;
+            display: block; text-decoration: none; color: inherit;
+        }
+        #roadmap .roadmap-card:hover { transform: translateY(-6px); border-color: var(--accent-2); }
+        #roadmap .roadmap-card h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+        #roadmap .roadmap-card h4 i { margin-right: 10px; color: var(--accent-2); }
+        #roadmap .roadmap-card p { color: var(--text-secondary); font-size: 0.95rem; }
+        #roadmap .roadmap-card.roadmap-pink { border-top-color: #ec4899; }
+        #roadmap .roadmap-card.roadmap-pink h4 i { color: #ec4899; }
+        @media (max-width: 700px) { #roadmap .roadmap-grid { grid-template-columns: 1fr; } }
+
+        /* ===== EDUCATION ===== */
+        #education { background: var(--bg-primary); }
+        #education .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        #education .edu-card {
+            background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius);
+            padding: 28px 26px; backdrop-filter: blur(8px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        #education .edu-card:hover { transform: translateY(-4px); border-color: rgba(108,92,231,0.2); }
+        #education .edu-card .degree { font-weight: 700; font-size: 1.1rem; }
+        #education .edu-card .school { color: var(--accent-2); font-weight: 500; font-size: 0.9rem; }
+        #education .edu-card .year { color: var(--text-muted); font-size: 0.8rem; margin-top: 4px; }
+        @media (max-width: 600px) { #education .edu-grid { grid-template-columns: 1fr; } }
+
+        /* ===== ACHIEVEMENTS ===== */
+        #achievements { background: var(--bg-secondary); }
+        #achievements .ach-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px; }
+        #achievements .ach-item {
+            background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius);
+            padding: 22px 20px; text-align: center; backdrop-filter: blur(8px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        #achievements .ach-item:hover { transform: translateY(-4px) scale(1.02); border-color: rgba(0,212,255,0.2); }
+        #achievements .ach-item .icon { font-size: 2rem; margin-bottom: 6px; }
+        #achievements .ach-item .name { font-weight: 600; font-size: 0.95rem; }
+
+        /* ===== MODALS ===== */
+        .modal-overlay {
+            position: fixed; inset: 0; z-index: 2000;
+            display: none; align-items: center; justify-content: center; padding: 20px;
+            background: rgba(0,0,0,0.75); backdrop-filter: blur(14px);
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 2.5rem;
+            padding: 40px 36px; max-width: 520px; width: 100%; max-height: 90vh; overflow-y: auto;
+            position: relative; animation: modalIn 0.35s ease;
+        }
+        .deploy-modal-content {
+            background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 2rem;
+            padding: 32px 36px; max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto;
+            position: relative; animation: modalIn 0.4s ease;
+        }
+        @keyframes modalIn { 0% { transform: scale(0.92) translateY(20px); opacity: 0; } 100% { transform: scale(1) translateY(0); opacity: 1; } }
+        .modal-close {
+            position: absolute; top: 16px; right: 24px;
+            font-size: 2rem; background: none; border: none;
+            color: var(--text-secondary); cursor: pointer; transition: color 0.3s;
+        }
+        .modal-close:hover { color: #ef4444; }
+
+        /* Contact Modal */
+        #contact-modal .modal-box h2 { font-size: 2rem; font-weight: 800; margin-bottom: 24px; background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        #contact-modal .contact-item {
+            display: flex; align-items: center; gap: 14px;
+            padding: 14px 18px; background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border);
+            border-radius: 1.5rem; margin-bottom: 12px; color: var(--text-primary);
+            transition: background 0.3s, border-color 0.3s; text-align: left;
+        }
+        #contact-modal .contact-item:hover { background: rgba(108,92,231,0.08); border-color: var(--accent-1); }
+        #contact-modal .contact-item i { width: 24px; text-align: center; color: var(--accent-2); font-size: 1.1rem; }
+
+        /* Project Detail Modal */
+        #project-modal .modal-box h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
+        #project-modal .modal-box h3 i { margin-right: 12px; }
+        #project-modal .modal-box .project-detail { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; }
+        #project-modal .modal-box .project-detail ul { list-style: none; margin-top: 12px; }
+        #project-modal .modal-box .project-detail ul li { padding: 4px 0; padding-left: 24px; position: relative; }
+        #project-modal .modal-box .project-detail ul li::before { content: '▹'; position: absolute; left: 0; color: var(--accent-2); }
+
+        /* Deploy Modal Visuals */
+        #deploy-modal .deploy-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--glass-border); }
+        #deploy-modal .deploy-header .icon-lg { font-size: 2.4rem; }
+        #deploy-modal .deploy-header .info h3 { font-size: 1.3rem; font-weight: 700; }
+        #deploy-modal .deploy-header .info .status { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+        #deploy-modal .deploy-header .info .status .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #34d399; animation: pulseDot 1.2s ease-in-out infinite; }
+        @keyframes pulseDot { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
+
+        #deploy-modal .visual-canvas { background: rgba(0,0,0,0.4); border-radius: 1.2rem; padding: 24px; margin-bottom: 20px; min-height: 160px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--glass-border); }
+        #deploy-modal .visual-canvas .vis-content { width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+
+        .vis-scan .scan-ring { width: 120px; height: 120px; border-radius: 50%; border: 2px solid rgba(56,189,248,0.3); position: relative; animation: scanPulse 2s ease-in-out infinite; }
+        .vis-scan .scan-ring::after { content: ''; position: absolute; inset: 8px; border-radius: 50%; border: 1px dashed rgba(56,189,248,0.2); }
+        .vis-scan .scan-ring .radar { position: absolute; top: 50%; left: 50%; width: 60%; height: 60%; background: conic-gradient(from 0deg, transparent 0%, rgba(56,189,248,0.15) 40%, transparent 60%); transform: translate(-50%, -50%) rotate(0deg); border-radius: 50%; animation: radarSpin 3s linear infinite; }
+        @keyframes scanPulse { 0%,100% { box-shadow: 0 0 20px rgba(56,189,248,0.1); } 50% { box-shadow: 0 0 60px rgba(56,189,248,0.25); } }
+        @keyframes radarSpin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+        .vis-scan .scan-dots { display: flex; gap: 12px; margin-top: 8px; }
+        .vis-scan .scan-dots span { width: 6px; height: 6px; border-radius: 50%; background: rgba(56,189,248,0.5); animation: dotPop 1.4s ease-in-out infinite; }
+        .vis-scan .scan-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .vis-scan .scan-dots span:nth-child(3) { animation-delay: 0.4s; }
+        .vis-scan .scan-dots span:nth-child(4) { animation-delay: 0.6s; }
+        .vis-scan .scan-dots span:nth-child(5) { animation-delay: 0.8s; }
+        @keyframes dotPop { 0%,100% { transform: scale(0.6); opacity: 0.3; } 50% { transform: scale(1.4); opacity: 1; } }
+
+        .vis-med .med-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; width: 100%; max-width: 200px; }
+        .vis-med .med-grid .cell { aspect-ratio: 1; border-radius: 4px; background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.12); animation: cellPulse 2.4s ease-in-out infinite; }
+        .vis-med .med-grid .cell:nth-child(2) { animation-delay: 0.1s; }
+        .vis-med .med-grid .cell:nth-child(3) { animation-delay: 0.2s; }
+        .vis-med .med-grid .cell:nth-child(4) { animation-delay: 0.3s; }
+        .vis-med .med-grid .cell:nth-child(5) { animation-delay: 0.4s; }
+        .vis-med .med-grid .cell:nth-child(6) { animation-delay: 0.5s; }
+        .vis-med .med-grid .cell:nth-child(7) { animation-delay: 0.6s; }
+        .vis-med .med-grid .cell:nth-child(8) { animation-delay: 0.7s; }
+        .vis-med .med-grid .cell:nth-child(9) { animation-delay: 0.8s; }
+        .vis-med .med-grid .cell:nth-child(10) { animation-delay: 0.9s; }
+        .vis-med .med-grid .cell:nth-child(11) { animation-delay: 0.15s; }
+        .vis-med .med-grid .cell:nth-child(12) { animation-delay: 0.25s; }
+        .vis-med .med-grid .cell:nth-child(13) { animation-delay: 0.35s; }
+        .vis-med .med-grid .cell:nth-child(14) { animation-delay: 0.45s; }
+        .vis-med .med-grid .cell:nth-child(15) { animation-delay: 0.55s; }
+        @keyframes cellPulse { 0%,100% { background: rgba(52,211,153,0.06); transform: scale(0.9); } 50% { background: rgba(52,211,153,0.3); transform: scale(1.05); } }
+
+        .vis-yt .yt-timeline { width: 100%; max-width: 320px; height: 40px; background: rgba(239,68,68,0.08); border-radius: 20px; position: relative; overflow: hidden; border: 1px solid rgba(239,68,68,0.15); }
+        .vis-yt .yt-timeline .progress { height: 100%; width: 0%; background: linear-gradient(90deg, #ef4444, #f97316); border-radius: 20px; transition: width 0.1s linear; position: relative; }
+        .vis-yt .yt-timeline .progress .head { position: absolute; right: -8px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 0 20px rgba(239,68,68,0.6); }
+        .vis-yt .yt-wave { display: flex; align-items: center; gap: 3px; height: 30px; margin-top: 8px; }
+        .vis-yt .yt-wave span { display: block; width: 4px; background: rgba(239,68,68,0.4); border-radius: 2px; animation: waveAnim 0.8s ease-in-out infinite alternate; }
+        .vis-yt .yt-wave span:nth-child(1) { height: 12px; animation-delay: 0s; }
+        .vis-yt .yt-wave span:nth-child(2) { height: 20px; animation-delay: 0.1s; }
+        .vis-yt .yt-wave span:nth-child(3) { height: 28px; animation-delay: 0.2s; }
+        .vis-yt .yt-wave span:nth-child(4) { height: 18px; animation-delay: 0.3s; }
+        .vis-yt .yt-wave span:nth-child(5) { height: 24px; animation-delay: 0.15s; }
+        .vis-yt .yt-wave span:nth-child(6) { height: 14px; animation-delay: 0.25s; }
+        .vis-yt .yt-wave span:nth-child(7) { height: 30px; animation-delay: 0.05s; }
+        .vis-yt .yt-wave span:nth-child(8) { height: 16px; animation-delay: 0.35s; }
+        .vis-yt .yt-wave span:nth-child(9) { height: 22px; animation-delay: 0.1s; }
+        @keyframes waveAnim { 0% { transform: scaleY(0.4); opacity: 0.4; } 100% { transform: scaleY(1); opacity: 1; } }
+
+        .vis-trade .trade-chart { width: 100%; max-width: 280px; height: 80px; display: flex; align-items: flex-end; gap: 6px; }
+        .vis-trade .trade-chart .bar { flex: 1; border-radius: 3px 3px 0 0; background: rgba(168,85,247,0.2); transition: height 0.5s ease; min-height: 8px; border: 1px solid rgba(168,85,247,0.1); border-bottom: none; position: relative; }
+        .vis-trade .trade-chart .bar.up { background: rgba(52,211,153,0.25); border-color: rgba(52,211,153,0.15); }
+        .vis-trade .trade-chart .bar.down { background: rgba(239,68,68,0.2); border-color: rgba(239,68,68,0.12); }
+        .vis-trade .trade-indicators { display: flex; gap: 16px; margin-top: 10px; font-size: 0.7rem; color: var(--text-secondary); }
+        .vis-trade .trade-indicators span { display: flex; align-items: center; gap: 4px; }
+        .vis-trade .trade-indicators .up-arrow { color: #34d399; }
+        .vis-trade .trade-indicators .down-arrow { color: #ef4444; }
+
+        #deploy-modal .deploy-log { background: rgba(0,0,0,0.5); border-radius: 0.8rem; padding: 16px 20px; font-family: 'Courier New', monospace; font-size: 0.8rem; line-height: 1.8; color: #a0aec0; max-height: 160px; overflow-y: auto; border: 1px solid var(--glass-border); min-height: 80px; }
+        #deploy-modal .deploy-log .log-line { opacity: 0; animation: logFade 0.3s ease forwards; }
+        #deploy-modal .deploy-log .log-line.done { color: #34d399; }
+        #deploy-modal .deploy-log .log-line.highlight { color: #38bdf8; }
+        @keyframes logFade { 0% { opacity: 0; transform: translateX(-6px); } 100% { opacity: 1; transform: translateX(0); } }
+
+        /* ===== PHOTO ===== */
+        .profile-photo {
+            width: 180px; height: 180px; border-radius: 50%; object-fit: cover;
+            border: 3px solid var(--accent-2); box-shadow: 0 0 40px rgba(0,212,255,0.15);
+            transition: transform 0.4s, box-shadow 0.4s; background: var(--bg-card);
+        }
+        .profile-photo:hover { transform: scale(1.04); box-shadow: 0 0 60px rgba(0,212,255,0.25); }
+        @media (max-width: 600px) { .profile-photo { width: 120px; height: 120px; } }
+
+        /* ===== FOOTER ===== */
+        footer { background: var(--bg-primary); padding: 24px 32px; text-align: center; border-top: 1px solid var(--glass-border); font-size: 0.8rem; color: var(--text-muted); }
+
+        /* ===== REDUCED MOTION ===== */
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+            .reveal { opacity: 1 !important; transform: none !important; }
+            #loader { display: none !important; }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            section { padding: 56px 18px; }
+            #hero { padding: 100px 18px 60px; }
+            #hero .hero-actions { flex-direction: column; align-items: stretch; }
+            #hero .hero-actions .btn { justify-content: center; }
+            #projects .projects-grid { grid-template-columns: 1fr; }
+            #deployments .deploy-grid { grid-template-columns: 1fr 1fr; }
+            #deploy-modal .deploy-modal-content { padding: 24px 18px; }
+            #deploy-modal .visual-canvas { min-height: 120px; padding: 16px; }
+            .vis-scan .scan-ring { width: 80px; height: 80px; }
+            .vis-med .med-grid { max-width: 140px; gap: 6px; }
+            .vis-yt .yt-timeline { max-width: 200px; height: 30px; }
+            .vis-trade .trade-chart { max-width: 200px; height: 60px; }
+        }
     </style>
 </head>
 <body>
 
-    <div id="canvas-container"></div>
+    <!-- ===== LOADING ===== -->
+    <div id="loader"><div class="initials">HR</div><div class="bar"></div></div>
 
-    <nav class="p-6 flex justify-between items-center fixed w-full z-[100] backdrop-blur-xl border-b border-white/5">
-        <div class="text-2xl font-bold tracking-tighter neon-glow">DR. HARSHA<span class="text-sky-400">.AI</span></div>
-        <div class="space-x-8 hidden md:flex font-medium items-center">
-            <a href="#about" class="hover:text-sky-400 transition">About</a>
-            <a href="#experience" class="hover:text-sky-400 transition">Trajectory</a>
-            <a href="#projects" class="hover:text-sky-400 transition">AI Tools</a>
-            <a href="https://linkedin.com/in/dr-harshavardhan-reddy-7441a9219/" target="_blank" class="hover:text-sky-400 transition text-xl"><i class="fa-brands fa-linkedin"></i></a>
-            <button onclick="toggleContact()" class="interactive-btn px-8 py-2 rounded-full text-white font-bold">Contact Now</button>
-        </div>
+    <!-- ===== NAVIGATION ===== -->
+    <nav id="navbar">
+        <a href="#hero" class="logo">Harsha<span>.</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#deployments">Deployments</a></li>
+            <li><a href="#connect">Connect</a></li>
+            <li><a href="#" onclick="event.preventDefault();openContact();">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
     </nav>
 
-    <section id="about" class="min-h-screen flex flex-col justify-center items-center px-6 text-center pt-32 md:pt-40">
-        <div class="animate__animated animate__fadeIn">
-            <div class="w-48 h-48 mx-auto mb-10 rounded-full border-4 border-sky-500/50 p-1 relative shadow-[0_0_50px_rgba(56,189,248,0.3)] z-10">
-                <div class="w-full h-full rounded-full overflow-hidden">
-                    <img src="profile.jpg" alt="Dr. Harsha" class="w-full h-full object-cover">
-                </div>
-                <div class="absolute bottom-4 right-4 w-10 h-10 bg-emerald-500 rounded-full border-4 border-slate-900 animate-pulse"></div>
-            </div>
-
-            <div class="inline-block px-4 py-1 border border-sky-500/30 rounded-full bg-sky-500/10 text-sky-400 text-xs font-bold mb-8 tracking-[0.3em] uppercase">Make It Happen</div>
-            <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter leading-none">AI <span class="text-sky-400 neon-glow">Automation</span><br>Architect</h1>
-            <p class="max-w-3xl text-gray-400 text-lg md:text-xl leading-relaxed mx-auto mb-10">
-                <strong>AI Systems Architect & GenAI Specialist.</strong> Orchestrating autonomous agentic systems and custom <strong>RAG pipelines</strong>. 
-                Expert in <strong>LLM Fine-tuning</strong>, Prompt Engineering, and AI/ML Automation—bridging <strong>Pharm.D & MBA</strong> expertise 
-                to deliver a <span class="text-emerald-400">75% reduction</span> in enterprise development cycles.
-            </p>
-        </div>
-    </section>
-
-    <section class="max-w-5xl mx-auto px-6 mb-32">
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="glass-card p-10 rounded-[2.5rem] border-dashed border-sky-500/40 border-2">
-                <h3 class="text-xl font-bold mb-3 text-sky-400">Collaborative Tech Talent 🚀</h3>
-                <p class="text-gray-400 text-sm mb-6">Seeking technical partners and co-founders to scale disruptive AI-driven healthcare and fintech ventures.</p>
-                <button onclick="toggleContact()" class="text-sky-400 font-bold hover:underline">Connect for Partnership →</button>
-            </div>
-            <div class="glass-card p-10 rounded-[2.5rem] border-dashed border-emerald-500/40 border-2">
-                <h3 class="text-xl font-bold mb-3 text-emerald-400">Investor Opportunities 💎</h3>
-                <p class="text-gray-400 text-sm mb-6">Actively looking for forward-thinking investors to enable the next generation of AI-enabled health-tech solutions.</p>
-                <button onclick="toggleContact()" class="text-emerald-400 font-bold hover:underline">Discuss Investment →</button>
+    <!-- ===== HERO ===== -->
+    <section id="hero">
+        <div id="three-canvas"></div>
+        <div class="hero-content">
+            <div class="hero-badge">✦ Forward Deployed Engineer</div>
+            <h1>Harsha <br /><span class="highlight">Reddy</span></h1>
+            <p class="subtitle">AI Product Owner &bull; Applied AI &amp; Agentic Systems</p>
+            <p class="tagline">Building and deploying Generative AI, RAG, and agentic solutions across healthcare, BFSI, and enterprise — from discovery to production.</p>
+            <div class="hero-actions">
+                <a href="#projects" class="btn btn-primary">View My Work <span class="icon">→</span></a>
+                <a href="#connect" class="btn btn-secondary">Let's Connect</a>
+                <a href="#" class="btn btn-outline" id="downloadResume">Download Resume <span class="icon">↓</span></a>
             </div>
         </div>
     </section>
 
-    <section id="experience" class="py-20 px-6 max-w-7xl mx-auto">
-        <h2 class="text-4xl font-bold mb-20 text-center uppercase tracking-widest">Professional <span class="text-sky-400">Trajectory</span></h2>
-        
-        <div class="timeline-container">
-            <div class="timeline-line"></div>
-
-            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-24">
-                <div class="timeline-dot"><i class="fa-solid fa-code text-sky-400 m-auto"></i></div>
-                <div class="hidden md:block w-1/2"></div>
-                <div class="w-full md:w-[45%] md:pl-8">
-                    <div class="glass-card p-8 rounded-[2rem] border-l-4 border-purple-500">
-                        <h3 class="text-2xl font-bold text-purple-400">AI Consultant & Founder</h3>
-                        <p class="text-gray-500 font-mono italic mb-4">Independent | 2024 - Present</p>
-                        <ul class="space-y-2 text-gray-300 text-sm">
-                            <li><i class="fa-solid fa-check text-purple-500 mr-2"></i> <strong>GenAI Architecture:</strong> Engineering multi-agent clinical verification systems utilizing advanced prompt engineering and fine-tuned LLMs.</li>
-                            <li><i class="fa-solid fa-check text-purple-500 mr-2"></i> <strong>Scalable RAG:</strong> Architecting proprietary Retrieval-Augmented Generation pipelines for high-precision medical data synthesis.</li>
-                            <li><i class="fa-solid fa-check text-purple-500 mr-2"></i> <strong>Product Execution:</strong> Deployed full-stack AI solutions focused on healthcare innovation and autonomous enterprise workflows.</li>
-                        </ul>
-                    </div>
+    <!-- ===== ABOUT ===== -->
+    <section id="about">
+        <div class="section-container">
+            <div class="section-label">About</div>
+            <h2 class="section-title">Who I Am</h2>
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <p>I'm a <strong>Forward Deployed Engineer</strong> and <strong>AI Product Owner</strong> with a unique blend of healthcare domain expertise, customer-facing problem solving, and hands-on AI development.</p>
+                    <p>I translate ambiguous business problems into practical AI systems — from technical discovery and rapid prototyping to production deployment. I own the end-to-end product lifecycle: vision, strategy, backlog prioritization, delivery, and iteration.</p>
+                    <p>My core differentiator: <strong>Rapid Domain-to-Deployment</strong> — learn the domain, identify the highest-value workflow, define requirements, design the system, build the prototype, validate, deploy, evaluate, iterate, and codify reusable patterns.</p>
+                    <p style="margin-top:16px;">
+                        <a href="https://www.linkedin.com/in/drharshavardhanreddy/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:rgba(0,119,181,0.12);padding:8px 20px;border-radius:60px;border:1px solid rgba(0,119,181,0.2);color:#0a66c2;font-weight:500;transition:all 0.3s;">
+                            <i class="fa-brands fa-linkedin" style="font-size:1.2rem;"></i> Connect on LinkedIn
+                        </a>
+                    </p>
                 </div>
-            </div>
-
-            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-24">
-                <div class="timeline-dot"><i class="fa-solid fa-heart-pulse text-sky-400 m-auto"></i></div>
-                <div class="w-full md:w-[45%] md:pr-8 text-right order-2 md:order-1">
-                    <div class="glass-card p-8 rounded-[2rem] border-r-4 border-sky-500">
-                        <h3 class="text-2xl font-bold text-sky-400">Medical Affairs & AI Architect</h3>
-                        <p class="text-gray-500 font-mono italic mb-4">LifeSignals | 2023 - Present</p>
-                        <ul class="space-y-2 text-gray-300 text-sm">
-                            <li>40% faster trial data interpretation via AI. <i class="fa-solid fa-check text-sky-500 ml-2"></i></li>
-                            <li>Managing Global KOLs for scientific alignment. <i class="fa-solid fa-check text-sky-500 ml-2"></i></li>
-                            <li>Strategic bridge between engineering & clinical. <i class="fa-solid fa-check text-sky-500 ml-2"></i></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="hidden md:block w-1/2 order-1 md:order-2"></div>
-            </div>
-
-            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-24">
-                <div class="timeline-dot"><i class="fa-solid fa-dna text-sky-400 m-auto"></i></div>
-                <div class="hidden md:block w-1/2"></div>
-                <div class="w-full md:w-[45%] md:pl-8">
-                    <div class="glass-card p-8 rounded-[2rem] border-l-4 border-emerald-500">
-                        <h3 class="text-2xl font-bold text-emerald-500">Medical Science Liaison (MSL)</h3>
-                        <p class="text-gray-500 font-mono italic mb-4">Hetero Labs | 2022 - 2023</p>
-                        <p class="text-gray-400 text-sm">Orchestrated Oncology data strategies. Identified key clinical gaps and managed mapping for 100+ KOLs.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-24">
-                <div class="timeline-dot"><i class="fa-solid fa-file-medical text-sky-400 m-auto"></i></div>
-                <div class="w-full md:w-[45%] md:pr-8 text-right order-2 md:order-1">
-                    <div class="glass-card p-8 rounded-[2rem] border-r-4 border-blue-400">
-                        <h3 class="text-xl font-bold text-blue-400 mb-2">Scientific Writer</h3>
-                        <p class="text-gray-500 font-mono italic mb-4">Indegene | 2020 - 2022</p>
-                        <p class="text-gray-400 text-sm">Automated literature review workflows and managed pharmacovigilance reports with 100% safety compliance.</p>
-                    </div>
-                </div>
-                <div class="hidden md:block w-1/2 order-1 md:order-2"></div>
-            </div>
-
-            <div class="relative flex flex-col md:flex-row justify-between items-center w-full mb-24">
-                <div class="timeline-dot"><i class="fa-solid fa-shield-virus text-sky-400 m-auto"></i></div>
-                <div class="hidden md:block w-1/2"></div>
-                <div class="w-full md:w-[45%] md:pl-8">
-                    <div class="glass-card p-8 rounded-[2rem] border-l-4 border-gray-500">
-                        <h3 class="text-xl font-bold text-gray-400 mb-2">Drug Safety Associate</h3>
-                        <p class="text-gray-500 font-mono italic mb-4">Navitas | 2020</p>
-                        <p class="text-gray-400 text-sm">Ensured pharmacovigilance compliance and managed adverse event monitoring for international markets.</p>
+                <div class="reveal" style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+                    <!-- ⬇️ REPLACE "photo.jpg" WITH YOUR IMAGE PATH (e.g., "assets/profile.jpg") ⬇️ -->
+                    <img src="photo.jpg" alt="Harsha Reddy" class="profile-photo" id="profilePhoto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%22180%22 viewBox=%220 0 180 180%22%3E%3Ccircle cx=%2290%22 cy=%2290%22 r=%2285%22 fill=%22%231a1a2e%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-size=%2248%22 font-family=%22Inter, sans-serif%22 font-weight=%22700%22 fill=%22%2300d4ff%22%3EHR%3C/text%3E%3C/svg%3E'" />
+                    <p style="font-size:0.75rem;color:var(--text-muted);">Replace <code>src="photo.jpg"</code> with your image</p>
+                    <div class="stats">
+                        <div class="stat-card"><div class="number">4+</div><div class="label">Enterprise AI Programs</div></div>
+                        <div class="stat-card"><div class="number">10+</div><div class="label">AI Tools Deployed</div></div>
+                        <div class="stat-card"><div class="number">60%</div><div class="label">Avg. Efficiency Gain</div></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="py-32 px-6 max-w-7xl mx-auto">
-        <h2 class="text-4xl font-bold mb-16 text-center tracking-tighter">Live <span class="text-sky-400">AI Deployments</span></h2>
-        
-        <div class="grid lg:grid-cols-4 gap-8">
-            <div class="glass-card p-8 rounded-[2rem] flex flex-col justify-between text-center">
-                <i class="fa-solid fa-user-check text-sky-400 text-3xl mb-6"></i>
-                <h3 class="text-xl font-bold mb-2">Truth Scanner</h3>
-                <button onclick="simulate('truth')" class="py-2 rounded-xl border border-sky-500/30 text-sky-400 hover:bg-sky-500 hover:text-white transition">Launch</button>
-            </div>
-            <div class="glass-card p-8 rounded-[2rem] flex flex-col justify-between text-center">
-                <i class="fa-solid fa-notes-medical text-emerald-400 text-3xl mb-6"></i>
-                <h3 class="text-xl font-bold mb-2">MedData-AI</h3>
-                <button onclick="simulate('med')" class="py-2 rounded-xl border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500 hover:text-white transition">Analyze</button>
-            </div>
-            <div class="glass-card p-8 rounded-[2rem] flex flex-col justify-between text-center">
-                <i class="fa-brands fa-youtube text-red-500 text-3xl mb-6"></i>
-                <h3 class="text-xl font-bold mb-2">YT Automator</h3>
-                <button onclick="simulate('yt')" class="py-2 rounded-xl border border-red-500/30 text-red-500 hover:bg-red-500 hover:text-white transition">Render</button>
-            </div>
-            <div class="glass-card p-8 rounded-[2rem] flex flex-col justify-between text-center">
-                <i class="fa-solid fa-chart-line text-purple-400 text-3xl mb-6"></i>
-                <h3 class="text-xl font-bold mb-2">TradeVCP</h3>
-                <button onclick="simulate('trade')" class="py-2 rounded-xl border border-purple-500/30 text-purple-400 hover:bg-purple-600 hover:text-white transition">Scan</button>
+    <!-- ===== SKILLS ===== -->
+    <section id="skills">
+        <div class="section-container">
+            <div class="section-label">Expertise</div>
+            <h2 class="section-title">Skills &amp; Technologies</h2>
+            <p class="section-desc">A comprehensive set of capabilities across AI, engineering, and product strategy.</p>
+            <div class="skills-grid reveal">
+                <div class="skill-group"><h4>Generative AI &amp; LLMs</h4><div class="tags"><span>GPT</span><span>LLaMA</span><span>Claude</span><span>Diffusion</span><span>Hugging Face</span><span>Mistral</span><span>Fine-tuning</span></div></div>
+                <div class="skill-group"><h4>AI Orchestration &amp; Agentic</h4><div class="tags"><span>LangChain</span><span>LangGraph</span><span>CrewAI</span><span>AutoGen</span><span>RAG</span><span>Graph RAG</span><span>Multi-Agent</span></div></div>
+                <div class="skill-group"><h4>Prompt Engineering</h4><div class="tags"><span>Chain-of-Thought</span><span>ReAct</span><span>Tree-of-Thoughts</span><span>Few-Shot</span><span>Self-Consistency</span><span>JSON Mode</span></div></div>
+                <div class="skill-group"><h4>Programming &amp; Tools</h4><div class="tags"><span>Python</span><span>TensorFlow</span><span>PyTorch</span><span>FastAPI</span><span>Streamlit</span><span>SQL</span><span>GitHub Actions</span></div></div>
+                <div class="skill-group"><h4>Cloud &amp; Deployment</h4><div class="tags"><span>AWS</span><span>GCP</span><span>Kubernetes</span><span>CI/CD</span><span>REST APIs</span><span>Docker</span></div></div>
+                <div class="skill-group"><h4>Product &amp; Strategy</h4><div class="tags"><span>Roadmapping</span><span>OKRs</span><span>Agile/Scrum</span><span>GTM Strategy</span><span>PLG</span><span>Competitive Analysis</span></div></div>
+                <div class="skill-group"><h4>Security &amp; Compliance</h4><div class="tags"><span>HIPAA</span><span>SOC-2</span><span>GDPR</span><span>PII/PHI Redaction</span><span>Bias Detection</span><span>SHAP/LIME</span></div></div>
+                <div class="skill-group"><h4>Vector &amp; Search</h4><div class="tags"><span>Pinecone</span><span>ChromaDB</span><span>FAISS</span><span>Weaviate</span><span>Semantic Search</span><span>Knowledge Graphs</span></div></div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 px-6 max-w-5xl mx-auto mb-20">
-        <h2 class="text-3xl font-bold mb-12 text-center text-gray-500 uppercase tracking-[0.4em]">Future Roadmap</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="glass-card p-8 rounded-[2rem] border-t-4 border-blue-500">
-                <h4 class="font-bold text-xl mb-3"><i class="fa-solid fa-qrcode mr-2"></i> Universal Health Passport</h4>
-                <p class="text-gray-400 text-sm">QR-based medical records allowing seamless data transfer across healthcare providers.</p>
-            </div>
-            <div class="glass-card p-8 rounded-[2rem] border-t-4 border-pink-500">
-                <h4 class="font-bold text-xl mb-3"><i class="fa-solid fa-house-medical mr-2"></i> Home Care AI</h4>
-                <p class="text-gray-400 text-sm">Intelligent home monitoring agents for elderly care and chronic disease management.</p>
+    <!-- ===== EXPERIENCE ===== -->
+    <section id="experience">
+        <div class="section-container">
+            <div class="section-label">Career</div>
+            <h2 class="section-title">Experience</h2>
+            <p class="section-desc">A track record of delivering AI-powered solutions across industries.</p>
+            <div class="timeline reveal">
+                <div class="exp-item"><div class="left"><div class="company">Deloitte India</div><div class="role">Manager – Strategy, Risk &amp; Transaction</div><div class="dates">Jun 2026 – Present</div></div><div class="right"><ul><li>Lead 4+ enterprise AI transformation programs across BFSI, healthcare, and manufacturing.</li><li>Architect and deploy scalable LLM, RAG, and agentic workflows.</li><li>Translate business requirements into prioritized user stories and technical workstreams.</li><li>Orchestrated AI-powered due diligence reducing deal-assessment timelines by 40%.</li><li>Established enterprise-grade responsible AI practices with validation frameworks.</li></ul></div></div>
+                <div class="exp-item"><div class="left"><div class="company">LifeSignals</div><div class="role">AI Automation Architect (Lead)</div><div class="dates">Apr 2023 – Present</div></div><div class="right"><ul><li>Architected and deployed 10+ Generative AI tools using Claude, GPT, and Gemini.</li><li>Developed AI Agents for clinical trial data extraction using Python and RAG.</li><li>Improved processing time by 40% and accuracy by 35%.</li><li>Engineered custom RAG system for medical literature synthesis reducing research time by 60%.</li><li>Integrated AI models into scalable applications via FastAPI.</li></ul></div></div>
+                <div class="exp-item"><div class="left"><div class="company">Hetero Labs</div><div class="role">Medical Science Liaison (MSL)</div><div class="dates">Mar 2022 – Jun 2023</div></div><div class="right"><ul><li>Led data-driven KOL mapping for Oncology/Neurology, categorizing 100+ high-impact physicians.</li><li>Developed medical training programs for 50+ stakeholders on drug mechanisms and clinical trials.</li><li>Orchestrated scientific advisory boards, translating clinical feedback into GTM strategies.</li></ul></div></div>
+                <div class="exp-item"><div class="left"><div class="company">Indegene</div><div class="role">Junior Associate Scientific Writer</div><div class="dates">Aug 2020 – Mar 2022</div></div><div class="right"><ul><li>Authored 25+ clinical manuscripts and regulatory documents for global pharma clients.</li><li>Pioneered semi-automated workflows, reducing formatting errors by 70% and timeline by 45%.</li><li>Produced visual presentations for medical congresses (ASCO, ASH, ESMO).</li></ul></div></div>
+                <div class="exp-item"><div class="left"><div class="company">Navitas LifeScience</div><div class="role">Trainee Drug Safety Associate</div><div class="dates">Jan 2020 – Jul 2020</div></div><div class="right"><ul><li>Processed 500+ ICSRs with medical narrative writing and MedDRA coding.</li><li>Maintained 100% FDA/EMA compliance, conducted signal detection analysis.</li></ul></div></div>
             </div>
         </div>
     </section>
 
-    <div id="contact-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center p-6 backdrop-blur-2xl">
-        <div class="glass-card p-10 rounded-[3rem] max-w-sm w-full text-center relative animate__animated animate__zoomIn">
-            <button onclick="toggleContact()" class="absolute top-6 right-8 text-3xl hover:text-red-500 text-white">&times;</button>
-            <h2 class="text-3xl font-black mb-10 tracking-tight neon-glow text-white uppercase">Get In Touch</h2>
-            <div class="space-y-6">
-                <a href="tel:+919008453536" class="block p-4 glass-card rounded-2xl hover:bg-emerald-500/10 transition text-white">
-                    <i class="fa-solid fa-phone text-emerald-400 mr-2"></i> +91 90084 53536
-                </a>
-                <a href="mailto:reddy.harsha183@gmail.com" class="block p-4 glass-card rounded-2xl hover:bg-sky-500/10 transition text-white">
-                    <i class="fa-solid fa-envelope text-sky-400 mr-2"></i> reddy.harsha183@gmail.com
-                </a>
-                <a href="https://linkedin.com/in/dr-harshavardhan-reddy-7441a9219/" target="_blank" class="block p-4 glass-card rounded-2xl hover:bg-sky-500/10 transition text-white">
-                    <i class="fa-brands fa-linkedin text-sky-400 mr-2"></i> LinkedIn Profile
-                </a>
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects">
+        <div class="section-container">
+            <div class="section-label">Portfolio</div>
+            <h2 class="section-title">Key AI Projects</h2>
+            <p class="section-desc">Enterprise-grade solutions built with RAG, agentic frameworks, and LLMs.</p>
+            <div class="projects-grid reveal">
+                <div class="project-card"><div class="name">DueDiligence AI Agent</div><div class="desc">Multi-agent RAG system for M&amp;A due diligence; web scrapes SEC filings, news, and regulatory data.</div><div class="techs"><span>CrewAI</span><span>LangGraph</span><span>RAG</span><span>GCP</span></div><div class="impact">↓ 60% timeline · ↑ 35% risk detection</div></div>
+                <div class="project-card"><div class="name">RiskSight AI</div><div class="desc">Enterprise SaaS for credit memo &amp; risk analysis; RAG-powered LLM extracts risk indicators and financial ratios.</div><div class="techs"><span>FastAPI</span><span>LangChain</span><span>PostgreSQL</span><span>AWS</span></div><div class="impact">5 days → 4 hours · 93% accuracy</div></div>
+                <div class="project-card"><div class="name">SmartHealth AI</div><div class="desc">End-to-end healthcare platform with EHR integration and RAG-based clinical decision support.</div><div class="techs"><span>FHIR APIs</span><span>PyTorch</span><span>RAG</span><span>AWS</span></div><div class="impact">55% less documentation time · 30% better outcomes</div></div>
+                <div class="project-card"><div class="name">Truth Scanner</div><div class="desc">Medical claim verification engine; web scrapes PubMed, clinical trials, and FDA data with Claude API + RAG.</div><div class="techs"><span>LangChain</span><span>ChromaDB</span><span>FastAPI</span></div><div class="impact">92% accuracy</div></div>
+                <div class="project-card"><div class="name">VideoGen AI</div><div class="desc">AI video automation for medical training; RAG-ingests clinical guidelines, generates scripts, voiceover, and animations.</div><div class="techs"><span>Stable Diffusion</span><span>ElevenLabs</span><span>FFmpeg</span><span>AWS</span></div><div class="impact">4 weeks → 2 days (10× faster)</div></div>
+                <div class="project-card"><div class="name">GTM Automator</div><div class="desc">Competitive intelligence SaaS; web scraping + GPT-4 + RAG for automated SWOT and market positioning.</div><div class="techs"><span>LangChain</span><span>Selenium</span><span>BeautifulSoup</span><span>GPT-4</span></div><div class="impact">2 weeks → 2 hours</div></div>
             </div>
+        </div>
+    </section>
+
+    <!-- ===== LIVE AI DEPLOYMENTS ===== -->
+    <section id="deployments">
+        <div class="section-container">
+            <div class="section-label">Live</div>
+            <h2 class="section-title">AI Deployments</h2>
+            <p class="section-desc">Click any card to launch a unique, interactive visual demo.</p>
+            <div class="deploy-grid reveal">
+                <div class="deploy-card" data-tool="truth"><i class="fa-solid fa-user-check icon" style="color: #38bdf8;"></i><div class="name">Truth Scanner</div><div class="desc-sm">Medical claim verification</div><button class="sim-btn" onclick="event.stopPropagation();openDeploy('truth')">Launch</button></div>
+                <div class="deploy-card" data-tool="med"><i class="fa-solid fa-notes-medical icon" style="color: #34d399;"></i><div class="name">MedData-AI</div><div class="desc-sm">Antibiotic resistance ML</div><button class="sim-btn" onclick="event.stopPropagation();openDeploy('med')">Analyze</button></div>
+                <div class="deploy-card" data-tool="yt"><i class="fa-brands fa-youtube icon" style="color: #ef4444;"></i><div class="name">YT Automator</div><div class="desc-sm">AI video automation</div><button class="sim-btn" onclick="event.stopPropagation();openDeploy('yt')">Render</button></div>
+                <div class="deploy-card" data-tool="trade"><i class="fa-solid fa-chart-line icon" style="color: #a855f7;"></i><div class="name">TradeVCP</div><div class="desc-sm">Competitive intelligence</div><button class="sim-btn" onclick="event.stopPropagation();openDeploy('trade')">Scan</button></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COLLABORATE ===== -->
+    <section id="connect">
+        <div class="section-container">
+            <div class="section-label">Collaborate</div>
+            <h2 class="section-title">Let's Build Together</h2>
+            <p class="section-desc">I'm actively looking for partners and investors to scale disruptive AI ventures.</p>
+            <div class="connect-grid reveal">
+                <div class="connect-card connect-sky"><i class="fa-solid fa-rocket icon-lg"></i><h3 style="color: #38bdf8;">Collaborative Tech Talent 🚀</h3><p>Seeking technical partners and co-founders to scale disruptive AI-driven healthcare and fintech ventures.</p><button class="connect-btn" onclick="openContact()">Connect for Partnership →</button></div>
+                <div class="connect-card connect-emerald"><i class="fa-solid fa-gem icon-lg"></i><h3 style="color: #34d399;">Investor Opportunities 💎</h3><p>Actively looking for forward-thinking investors to enable the next generation of AI-enabled health-tech solutions.</p><button class="connect-btn" onclick="openContact()">Discuss Investment →</button></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ROADMAP (Now with working modals) ===== -->
+    <section id="roadmap">
+        <div class="section-container">
+            <div class="section-label">Vision</div>
+            <h2 class="section-title">Future Roadmap</h2>
+            <p class="section-desc">Click a card to see the full vision.</p>
+            <div class="roadmap-grid reveal">
+                <div class="roadmap-card" onclick="openProject('universal')">
+                    <h4><i class="fa-solid fa-qrcode"></i> Universal Health Passport 🌍</h4>
+                    <p>QR-based medical records allowing seamless data transfer across healthcare providers.</p>
+                </div>
+                <div class="roadmap-card roadmap-pink" onclick="openProject('homecare')">
+                    <h4><i class="fa-solid fa-house-medical"></i> Home Care AI 🏠</h4>
+                    <p>Intelligent home monitoring agents for elderly care and chronic disease management.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EDUCATION ===== -->
+    <section id="education">
+        <div class="section-container">
+            <div class="section-label">Education</div>
+            <h2 class="section-title">Academic Background</h2>
+            <p class="section-desc">Combining business, science, and technology.</p>
+            <div class="edu-grid reveal">
+                <div class="edu-card"><div class="degree">Master of Business Administration</div><div class="school">European Open University</div><div class="year">2022 – 2023</div></div>
+                <div class="edu-card"><div class="degree">Doctor of Pharmacy</div><div class="school">Rajiv Gandhi University of Health Sciences</div><div class="year">2013 – 2019</div></div>
+                <div class="edu-card" style="grid-column:1/-1;"><div class="degree">LLM Fine-tuning &amp; Agentic Workflows</div><div class="school">Project-based enterprise implementation (LoRA/PEFT, Advanced RAG)</div><div class="year">2023 – Ongoing</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ACHIEVEMENTS ===== -->
+    <section id="achievements">
+        <div class="section-container">
+            <div class="section-label">Recognition</div>
+            <h2 class="section-title">Awards &amp; Publications</h2>
+            <p class="section-desc">Honors and contributions to the field.</p>
+            <div class="ach-grid reveal">
+                <div class="ach-item"><div class="icon">🏆</div><div class="name">Make It Happen Award</div></div>
+                <div class="ach-item"><div class="icon">⭐</div><div class="name">Best Contribution Award</div></div>
+                <div class="ach-item"><div class="icon">📄</div><div class="name">Assessment of caregivers in children with epilepsy</div></div>
+                <div class="ach-item"><div class="icon">📑</div><div class="name">Whitepapers: AI in Pharmacotherapy, KOL Engagement</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT MODAL ===== -->
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeContact()">&times;</button>
+            <h2>Get In Touch</h2>
+            <a href="tel:+919008453536" class="contact-item"><i class="fa-solid fa-phone"></i> +91 90084 53536</a>
+            <a href="mailto:reddy.harsha183@gmail.com" class="contact-item"><i class="fa-solid fa-envelope"></i> reddy.harsha183@gmail.com</a>
+            <a href="https://www.linkedin.com/in/drharshavardhanreddy/" target="_blank" class="contact-item"><i class="fa-brands fa-linkedin"></i> LinkedIn Profile</a>
         </div>
     </div>
 
-    <div id="sim-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center p-4 bg-black/90">
-        <div class="w-full max-w-2xl terminal-bg h-96 overflow-hidden flex flex-col">
-            <div class="flex justify-between items-center mb-4 border-b border-green-500/30 pb-2">
-                <span id="sim-title" class="text-xs font-bold text-white uppercase">AGENT_SYSTEM_INIT</span>
-                <button onclick="document.getElementById('sim-modal').classList.add('hidden')" class="text-red-500">CLOSE</button>
-            </div>
-            <div id="sim-output" class="flex-1 overflow-y-auto space-y-2 text-sm text-green-500"></div>
+    <!-- ===== PROJECT DETAIL MODAL ===== -->
+    <div id="project-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeProject()">&times;</button>
+            <div id="project-content"></div>
         </div>
     </div>
 
-    <footer class="py-12 px-6 border-t border-white/5 text-center">
-        <div class="flex justify-center gap-6 mb-8">
-            <a href="https://linkedin.com/in/dr-harshavardhan-reddy-7441a9219/" target="_blank" class="text-2xl hover:text-sky-400 transition text-white"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="mailto:reddy.harsha183@gmail.com" class="text-2xl hover:text-sky-400 transition text-white"><i class="fa-solid fa-envelope"></i></a>
-            <a href="tel:+919008453536" class="text-2xl hover:text-emerald-400 transition text-white"><i class="fa-brands fa-whatsapp"></i></a>
+    <!-- ===== DEPLOY MODAL ===== -->
+    <div id="deploy-modal" class="modal-overlay">
+        <div class="deploy-modal-content">
+            <button class="modal-close" onclick="closeDeploy()">&times;</button>
+            <div class="deploy-header">
+                <div class="icon-lg" id="deployIcon"><i class="fa-solid fa-user-check" style="color:#38bdf8;"></i></div>
+                <div class="info">
+                    <h3 id="deployName">Truth Scanner</h3>
+                    <div class="status"><span class="dot"></span><span id="deployStatus">Running analysis...</span></div>
+                </div>
+            </div>
+            <div class="visual-canvas" id="visualCanvas"><div class="vis-content" id="visContent"></div></div>
+            <div class="deploy-log" id="deployLog"><div class="log-line highlight">⏣ Initializing system...</div></div>
         </div>
-        <p class="text-slate-500 text-sm mb-2">© 2026 Dr. Alla Harshavardhan Reddy. All Rights Reserved.</p>
-        <p class="text-slate-600 text-xs tracking-widest uppercase font-bold">Built with AI-Augmented Engineering</p>
-    </footer>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer><p>&copy; 2026 Harsha Reddy. Built with precision &amp; passion.</p></footer>
+
+    <!-- ===== THREE.JS ===== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
+    </script>
 
     <script>
-        const canvas = document.createElement('canvas'); document.getElementById('canvas-container').appendChild(canvas);
-        const ctx = canvas.getContext('2d'); canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        let particles = []; for(let i=0; i<60; i++) particles.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, vx: (Math.random()-0.5)*0.6, vy: (Math.random()-0.5)*0.6, size: Math.random()*2 });
-        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.fillStyle = 'rgba(56, 189, 248, 0.5)'; particles.forEach(p => { p.x += p.vx; p.y += p.vy; if(p.x<0||p.x>canvas.width)p.vx*=-1; if(p.y<0||p.y>canvas.height)p.vy*=-1; ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill(); }); requestAnimationFrame(animate); }
-        animate();
-        function toggleContact() { document.getElementById('contact-modal').classList.toggle('hidden'); }
-        function simulate(type) {
-            const modal = document.getElementById('sim-modal'); const output = document.getElementById('sim-output'); const title = document.getElementById('sim-title'); modal.classList.remove('hidden'); output.innerHTML = ''; let logs = [];
-            if(type==='truth'){ title.innerText="CLAUDE_AGENT_INIT"; logs=["Establishing connection...", "Ingesting clinical claim...", "VERIFIED: 99.4% Confidence."]; }
-            else if(type==='med'){ title.innerText="GEMINI_PREDICT_INIT"; logs=["Querying Supabase...", "Running Model...", "Recommendation sent."]; }
-            else if(type==='yt'){ title.innerText="GPT_RENDER_INIT"; logs=["Generating script...", "Rendering assets...", "UPLOAD READY."]; }
-            else { title.innerText="TWILIO_SCANNER_INIT"; logs=["Scanning NSE feed...", "VCP pattern detected.", "SENT to +91 90084 53536"]; }
-            logs.forEach((log, i) => { setTimeout(() => { output.innerHTML += `<div>> ${log}</div>`; output.scrollTop = output.scrollHeight; }, i * 800); });
+        // ============================================================
+        //  LOADING
+        // ============================================================
+        window.addEventListener('load', () => {
+            setTimeout(() => document.getElementById('loader').classList.add('hidden'), 900);
+        });
+
+        // ============================================================
+        //  NAVIGATION
+        // ============================================================
+        const nav = document.getElementById('navbar');
+        const toggle = document.getElementById('navToggle');
+        const links = document.getElementById('navLinks');
+        const anchors = links.querySelectorAll('a');
+
+        toggle.addEventListener('click', () => {
+            links.classList.toggle('open');
+            toggle.classList.toggle('active');
+        });
+        anchors.forEach(a => a.addEventListener('click', () => {
+            links.classList.remove('open');
+            toggle.classList.remove('active');
+        }));
+
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.pageYOffset > 60);
+            let current = '';
+            document.querySelectorAll('section[id]').forEach(sec => {
+                if (window.pageYOffset >= sec.offsetTop - 120) current = sec.id;
+            });
+            anchors.forEach(a => {
+                const href = a.getAttribute('href');
+                if (href && href.startsWith('#')) a.classList.toggle('active', href === '#' + current);
+            });
+        });
+
+        // ============================================================
+        //  THREE.JS PARTICLES (Fallback safe)
+        // ============================================================
+        (function() {
+            const container = document.getElementById('three-canvas');
+            if (!container) return;
+            try {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1,
+                    1000);
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(container.clientWidth, container.clientHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                container.appendChild(renderer.domElement);
+
+                const count = 1800,
+                    positions = new Float32Array(count * 3),
+                    colors = new Float32Array(count * 3);
+                const c1 = new THREE.Color('#6c5ce7'),
+                    c2 = new THREE.Color('#00d4ff'),
+                    c3 = new THREE.Color('#a855f7');
+                for (let i = 0; i < count; i++) {
+                    const r = 8 + Math.random() * 12,
+                        theta = Math.random() * Math.PI * 2,
+                        phi = Math.acos(2 * Math.random() - 1);
+                    positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+                    positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta) * 0.5;
+                    positions[i * 3 + 2] = r * Math.cos(phi);
+                    const mix = Math.random(),
+                        c = mix < 0.5 ? c1.clone().lerp(c2, mix * 2) : c2.clone().lerp(c3, (mix - 0.5) * 2);
+                    colors[i * 3] = c.r;
+                    colors[i * 3 + 1] = c.g;
+                    colors[i * 3 + 2] = c.b;
+                }
+                const geo = new THREE.BufferGeometry();
+                geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+                const mat = new THREE.PointsMaterial({ size: 0.08, vertexColors: true, transparent: true,
+                    opacity: 0.7, blending: THREE.AdditiveBlending, sizeAttenuation: true });
+                const particles = new THREE.Points(geo, mat);
+                scene.add(particles);
+                let mx = 0,
+                    my = 0;
+                document.addEventListener('mousemove', (e) => { mx = (e.clientX / window.innerWidth - 0.5) * 2;
+                    my = (e.clientY / window.innerHeight - 0.5) * 2; });
+                camera.position.z = 16;
+                (function anim() {
+                    requestAnimationFrame(anim);
+                    particles.rotation.y += 0.0008;
+                    particles.rotation.x += 0.0004;
+                    particles.rotation.x += (my * 0.02 - particles.rotation.x) * 0.02;
+                    particles.rotation.y += (mx * 0.02 - particles.rotation.y) * 0.02;
+                    renderer.render(scene, camera);
+                })();
+                window.addEventListener('resize', () => {
+                    const w = container.clientWidth,
+                        h = container.clientHeight;
+                    camera.aspect = w / h;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(w, h);
+                });
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) renderer.domElement.style.display =
+                    'none';
+            } catch (_) { container.style.display = 'none'; }
+        })();
+
+        // ============================================================
+        //  SCROLL REVEAL (FIXED BUG)
+        // ============================================================
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el)); // <- This was the broken line
+
+        // ============================================================
+        //  CONTACT MODAL
+        // ============================================================
+        function openContact() {
+            document.getElementById('contact-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
+
+        function closeContact() {
+            document.getElementById('contact-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('contact-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeContact();
+        });
+
+        // ============================================================
+        //  PROJECT MODAL
+        // ============================================================
+        const projectData = {
+            universal: {
+                title: 'Universal Health Passport 🌍',
+                desc: 'A revolutionary QR-based medical records system that gives patients complete control over their health data.',
+                details: [
+                    'Seamless data transfer across any healthcare provider',
+                    'End-to-end encryption with patient consent management',
+                    'Integrates with existing EHR systems via FHIR APIs',
+                    'Real-time access to allergy, medication, and history',
+                    'Reduces administrative errors by 70% and speeds up emergency care'
+                ]
+            },
+            homecare: {
+                title: 'Home Care AI 🏠',
+                desc: 'Intelligent home monitoring agents that combine computer vision, NLP, and IoT to support elderly and chronic care patients.',
+                details: [
+                    'Fall detection and emergency alert system',
+                    'Medication adherence monitoring with voice reminders',
+                    'Daily activity tracking and anomaly detection',
+                    'Natural language interface for family and caregivers',
+                    'Predictive health analytics for proactive intervention'
+                ]
+            }
+        };
+
+        function openProject(key) {
+            const data = projectData[key];
+            if (!data) return;
+            document.getElementById('project-content').innerHTML = `
+                <h3><i class="fa-solid fa-${key === 'universal' ? 'qrcode' : 'house-medical'}"></i> ${data.title}</h3>
+                <div class="project-detail">
+                    <p>${data.desc}</p>
+                    <ul>${data.details.map(d => `<li>${d}</li>`).join('')}</ul>
+                </div>
+            `;
+            document.getElementById('project-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProject() {
+            document.getElementById('project-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('project-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeProject();
+        });
+
+        // ============================================================
+        //  DEPLOY MODAL
+        // ============================================================
+        const deployData = {
+            truth: {
+                name: 'Truth Scanner',
+                icon: 'fa-solid fa-user-check',
+                color: '#38bdf8',
+                status: 'Verifying medical claims...',
+                visual: 'scan',
+                logs: [
+                    { text: '⏣ Initializing Truth Scanner v2.4...', cls: 'highlight' },
+                    { text: '➜ Connecting to PubMed API...', cls: '' },
+                    { text: '➜ Scraping clinical trial data (1,247 records)...', cls: '' },
+                    { text: '➜ Cross-referencing FDA adverse events...', cls: '' },
+                    { text: '➜ Running claim validation model...', cls: '' },
+                    { text: '✓ Analysis complete: 92% accuracy verified.', cls: 'done' },
+                    { text: '✓ 47 claims validated, 3 flagged for review.', cls: 'done' },
+                ]
+            },
+            med: {
+                name: 'MedData-AI',
+                icon: 'fa-solid fa-notes-medical',
+                color: '#34d399',
+                status: 'Predicting resistance patterns...',
+                visual: 'med',
+                logs: [
+                    { text: '⏣ Starting MedData-AI analysis...', cls: 'highlight' },
+                    { text: '➜ Loading EHR dataset (8,432 patients)...', cls: '' },
+                    { text: '➜ Extracting microbial features...', cls: '' },
+                    { text: '➜ Running antibiotic resistance ML model...', cls: '' },
+                    { text: '➜ 128-dimensional feature space analyzed.', cls: '' },
+                    { text: '✓ Prediction: 85% accuracy.', cls: 'done' },
+                    { text: '✓ 25% reduction in misprescription estimated.', cls: 'done' },
+                ]
+            },
+            yt: {
+                name: 'YT Automator',
+                icon: 'fa-brands fa-youtube',
+                color: '#ef4444',
+                status: 'Rendering video...',
+                visual: 'yt',
+                logs: [
+                    { text: '⏣ YT Automator rendering pipeline started...', cls: 'highlight' },
+                    { text: '➜ Fetching trending medical content...', cls: '' },
+                    { text: '➜ Generating script with RAG (clinical guidelines)...', cls: '' },
+                    { text: '➜ Synthesizing voiceover (ElevenLabs)...', cls: '' },
+                    { text: '➜ Overlaying animations and captions...', cls: '' },
+                    { text: '✓ Video ready for review. (4 weeks → 2 days)', cls: 'done' },
+                ]
+            },
+            trade: {
+                name: 'TradeVCP',
+                icon: 'fa-solid fa-chart-line',
+                color: '#a855f7',
+                status: 'Analyzing market signals...',
+                visual: 'trade',
+                logs: [
+                    { text: '⏣ TradeVCP scanning market data...', cls: 'highlight' },
+                    { text: '➜ Analyzing SEC filings (12 companies)...', cls: '' },
+                    { text: '➜ Detecting risk indicators...', cls: '' },
+                    { text: '➜ Calculating financial ratios in real-time...', cls: '' },
+                    { text: '➜ Early warning system active...', cls: '' },
+                    { text: '✓ 50% improvement in early warning detection.', cls: 'done' },
+                    { text: '✓ Report ready for decision support.', cls: 'done' },
+                ]
+            }
+        };
+
+        const visualRenderers = {
+            scan: (c) => c.innerHTML =
+                `<div class="vis-scan"><div class="scan-ring"><div class="radar"></div></div><div class="scan-dots"><span></span><span></span><span></span><span></span><span></span></div><div style="display:flex;gap:20px;font-size:0.7rem;color:var(--text-muted);margin-top:4px;"><span>🔍 1,247 records</span><span>✅ 92% accuracy</span></div></div>`,
+            med: (c) => {
+                const cells = Array.from({ length: 15 }, () => `<div class="cell"></div>`).join('');
+                c.innerHTML =
+                    `<div class="vis-med"><div class="med-grid">${cells}</div><div style="display:flex;gap:20px;font-size:0.7rem;color:var(--text-muted);"><span>🧬 8,432 patients</span><span>📊 85% accuracy</span></div></div>`;
+                c.querySelectorAll('.cell').forEach((el, i) => el.style.animationDelay = (0.1 + (i % 5) * 0.08) + 's');
+            },
+            yt: (c) => {
+                c.innerHTML =
+                    `<div class="vis-yt"><div class="yt-timeline"><div class="progress" id="ytProgress" style="width:0%;"><div class="head"></div></div></div><div class="yt-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div style="display:flex;gap:20px;font-size:0.7rem;color:var(--text-muted);"><span>🎬 4:32 min</span><span>⚡ 10× faster</span></div></div>`;
+                let p = 0,
+                    iv = setInterval(() => {
+                        p += Math.random() * 3 + 1;
+                        if (p >= 100) { p = 100;
+                            clearInterval(iv); }
+                        const el = document.getElementById('ytProgress');
+                        if (el) el.style.width = p + '%';
+                    }, 120);
+                c._interval = iv;
+            },
+            trade: (c) => {
+                const bars = Array.from({ length: 12 }, () => {
+                    const h = 20 + Math.random() * 50,
+                        cls = Math.random() > 0.5 ? 'up' : 'down';
+                    return `<div class="bar ${cls}" style="height:${h}%;"></div>`;
+                }).join('');
+                c.innerHTML =
+                    `<div class="vis-trade"><div class="trade-chart">${bars}</div><div class="trade-indicators"><span><span class="up-arrow">▲</span> +3.2%</span><span><span class="down-arrow">▼</span> -1.1%</span><span>📊 28 factors</span></div></div>`;
+            }
+        };
+
+        function openDeploy(tool) {
+            const data = deployData[tool];
+            if (!data) return;
+            document.getElementById('deployIcon').innerHTML = `<i class="${data.icon}" style="color:${data.color};"></i>`;
+            document.getElementById('deployName').textContent = data.name;
+            document.getElementById('deployStatus').textContent = data.status;
+
+            const vis = document.getElementById('visContent');
+            if (vis._interval) { clearInterval(vis._interval);
+                vis._interval = null; }
+            vis.innerHTML = '';
+            if (visualRenderers[data.visual]) visualRenderers[data.visual](vis);
+
+            const log = document.getElementById('deployLog');
+            log.innerHTML = '';
+            data.logs.forEach((l, i) => {
+                const div = document.createElement('div');
+                div.className = `log-line ${l.cls || ''}`;
+                div.textContent = l.text;
+                div.style.animationDelay = (i * 0.25) + 's';
+                log.appendChild(div);
+            });
+
+            document.getElementById('deploy-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            const statusEl = document.getElementById('deployStatus');
+            const steps = ['Initializing...', 'Processing data...', 'Running analysis...', 'Generating results...',
+                'Finalizing...'
+            ];
+            let idx = 0,
+                iv = setInterval(() => {
+                    if (idx < steps.length) { statusEl.textContent = steps[idx];
+                        idx++; } else { statusEl.textContent = '✅ ' + data.name + ' ready.';
+                        clearInterval(iv); }
+                }, 600);
+            document.getElementById('deploy-modal')._statusInterval = iv;
+        }
+
+        function closeDeploy() {
+            const modal = document.getElementById('deploy-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            if (modal._statusInterval) { clearInterval(modal._statusInterval);
+                modal._statusInterval = null; }
+            const vis = document.getElementById('visContent');
+            if (vis._interval) { clearInterval(vis._interval);
+                vis._interval = null; }
+        }
+        document.getElementById('deploy-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeDeploy();
+        });
+        document.querySelectorAll('.deploy-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const tool = this.dataset.tool;
+                if (tool) openDeploy(tool);
+            });
+        });
+
+        // ============================================================
+        //  RESUME DOWNLOAD
+        // ============================================================
+        document.getElementById('downloadResume').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('📄 Place your resume PDF at "assets/resume.pdf" and update the download link.');
+        });
+
+        // ============================================================
+        //  SMOOTH SCROLL
+        // ============================================================
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function(e) {
+                const id = this.getAttribute('href');
+                if (id === '#') return;
+                if (id === '#contact-modal' || id === '#deploy-modal' || id === '#project-modal') return;
+                const target = document.querySelector(id);
+                if (target) { e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+
+        console.log('✅ All systems ready! Replace photo src and resume link.');
     </script>
 </body>
 </html>
