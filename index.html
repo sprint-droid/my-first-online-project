@@ -525,9 +525,8 @@
                     </p>
                 </div>
                 <div class="reveal" style="display:flex;flex-direction:column;align-items:center;gap:16px;">
-                    <!-- ⬇️ REPLACE "photo.jpg" WITH YOUR IMAGE PATH (e.g., "assets/profile.jpg") ⬇️ -->
-                    <img src="photo.jpg" alt="Harsha Reddy" class="profile-photo" id="profilePhoto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%22180%22 viewBox=%220 0 180 180%22%3E%3Ccircle cx=%2290%22 cy=%2290%22 r=%2285%22 fill=%22%231a1a2e%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-size=%2248%22 font-family=%22Inter, sans-serif%22 font-weight=%22700%22 fill=%22%2300d4ff%22%3EHR%3C/text%3E%3C/svg%3E'" />
-                    <p style="font-size:0.75rem;color:var(--text-muted);">Replace <code>src="photo.jpg"</code> with your image</p>
+                    <!-- profile.jpg must be in the same folder -->
+                    <img src="profile.jpg" alt="Harsha Reddy" class="profile-photo" id="profilePhoto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%22180%22 viewBox=%220 0 180 180%22%3E%3Ccircle cx=%2290%22 cy=%2290%22 r=%2285%22 fill=%22%231a1a2e%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-size=%2248%22 font-family=%22Inter, sans-serif%22 font-weight=%22700%22 fill=%22%2300d4ff%22%3EHR%3C/text%3E%3C/svg%3E'" />
                     <div class="stats">
                         <div class="stat-card"><div class="number">4+</div><div class="label">Enterprise AI Programs</div></div>
                         <div class="stat-card"><div class="number">10+</div><div class="label">AI Tools Deployed</div></div>
@@ -812,12 +811,12 @@
         })();
 
         // ============================================================
-        //  SCROLL REVEAL (FIXED BUG)
+        //  SCROLL REVEAL
         // ============================================================
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.12 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el)); // <- This was the broken line
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         // ============================================================
         //  CONTACT MODAL
@@ -1068,7 +1067,7 @@
             });
         });
 
-        console.log('✅ All systems ready! Replace photo src and resume link.');
+        console.log('✅ All systems ready! Your profile photo is set to profile.jpg.');
     </script>
 </body>
 </html>
